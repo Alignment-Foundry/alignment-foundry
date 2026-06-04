@@ -1,4 +1,4 @@
-# Stage 05 — Human Review
+# Stage 05, Human Review
 
 **One job**: Present validated fixes for human decision. Record every outcome. Gate production.
 
@@ -11,7 +11,7 @@ This is the mandatory human checkpoint. No fix reaches production without explic
 ```
 Validated fixes ready for review: [N]
 ─────────────────────────────────────────────────────
-[FIX-NNN] [title] — [priority] — validated [date] — risk: [low/med/high]
+[FIX-NNN] [title], [priority], validated [date], risk: [low/med/high]
 [FIX-NNN] ...
 ─────────────────────────────────────────────────────
 Suggested review order: critical → high → medium → low
@@ -46,7 +46,7 @@ For each item, write `05-human-review/[approved|rejected]/DEC-[NNN]-[date].md`:
 **Decision**: APPROVED / REJECTED / MODIFIED / DEFERRED
 **Decided by**: [name / role]
 **Date**: [timestamp]
-**Second reviewer** (if required): [name] — APPROVED / REJECTED
+**Second reviewer** (if required): [name], APPROVED / REJECTED
 
 ## If APPROVED
 Production deployment authorized.
@@ -54,7 +54,7 @@ Special instructions: [timing, coordination, monitoring requirements]
 → Proceed to Stage 06
 
 ## If REJECTED
-Reason: [human's reason — record accurately]
+Reason: [human's reason, record accurately]
 Action: [close / re-investigate / reduce scope / escalate]
 Do not resubmit without: [new evidence / different approach / human requests it]
 

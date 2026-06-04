@@ -1,30 +1,30 @@
-# Stage 06 — Deploy & Learn
+# Stage 06, Deploy & Learn
 
 **One job**: Deploy approved fixes to production. Measure outcomes. Update the changelog.
 Close the feedback loop so the next scan is smarter.
 
-**Input**: `05-human-review/approved/` — only approved decision files
+**Input**: `05-human-review/approved/`, only approved decision files
 
 ---
 
-## Part A — Production deployment
+## Part A, Production deployment
 
 For each approved fix:
 
-**Step 1 — Final pre-deploy check**
+**Step 1, Final pre-deploy check**
 - Decision file confirms APPROVED with required reviewers
 - Rollback plan is present and understood
 - Any special timing/coordination requirements from the decision file are met
 
-**Step 2 — Deploy**
+**Step 2, Deploy**
 Follow the deployment notes from the fix proposal.
 Apply to production exactly as validated in staging.
 
-**Step 3 — Monitor**
+**Step 3, Monitor**
 Minimum monitoring window: 24 hours (or as specified in fix proposal).
 Watch specifically: the metric cited in the fix's expected impact.
 
-**Step 4 — Write deployment record**
+**Step 4, Write deployment record**
 
 Write `06-deploy-learn/deployed/DEPLOY-[NNN]-[date].md`:
 
@@ -38,14 +38,14 @@ Write `06-deploy-learn/deployed/DEPLOY-[NNN]-[date].md`:
 **Monitoring window**: [duration]
 
 ## Deployment steps taken
-[Exact steps applied — verbatim where code/config]
+[Exact steps applied, verbatim where code/config]
 
 ## Initial observations (first 30 minutes)
 [What was seen immediately after deployment]
 
 ## 24h outcome
 [Measured 24h after deployment]
-- Target metric: [metric] — before: [value] → after: [value]
+- Target metric: [metric], before: [value] → after: [value]
 - New errors introduced: [none / describe]
 - Unexpected behavior: [none / describe]
 - Verdict: RESOLVED / PARTIAL / NOT RESOLVED / REGRESSED
@@ -53,7 +53,7 @@ Write `06-deploy-learn/deployed/DEPLOY-[NNN]-[date].md`:
 
 ---
 
-## Part B — Outcome measurement and learning
+## Part B, Outcome measurement and learning
 
 After the monitoring window, write `06-deploy-learn/outcomes/OUTCOME-[NNN]-[date].md`:
 
@@ -61,7 +61,7 @@ After the monitoring window, write `06-deploy-learn/outcomes/OUTCOME-[NNN]-[date
 # OUTCOME-[NNN]: [Fix title]
 
 **Based on**: DEPLOY-[NNN]
-**Measured**: [date — at least 24h post-deploy]
+**Measured**: [date, at least 24h post-deploy]
 
 ## Did it work?
 
@@ -85,7 +85,7 @@ Adjacent improvements noticed: [none / describe]
 
 ---
 
-## Part C — Changelog update
+## Part C, Changelog update
 
 Append to `06-deploy-learn/changelog/system-changelog.md`:
 
@@ -98,7 +98,7 @@ made by this workspace. It is the audit trail for every production modification.
 
 ---
 
-## Part D — Feeding back to future scans
+## Part D, Feeding back to future scans
 
 After measuring outcomes, add to `_core/patterns/scan-learnings.md`:
 

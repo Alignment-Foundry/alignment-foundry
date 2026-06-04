@@ -1,9 +1,9 @@
-# Stage 04 — PACE Resilience & RACI
+# Stage 04, PACE Resilience & RACI
 
 **One job**: Design PACE resilience for critical steps. Build the RACI ownership matrix.
 
 **Skills to load**:
-- `_core/skills/pace-design/SKILL.md` — for PACE analysis
+- `_core/skills/pace-design/SKILL.md`, for PACE analysis
 - Keep `_core/skills/automation-scoring/SKILL.md` in context if needed for Tier review
 
 **References**: `_core/patterns/pace-examples.md` (load for worked examples if needed)
@@ -16,7 +16,7 @@
 
 ---
 
-## Part A — PACE Analysis
+## Part A, PACE Analysis
 
 ### Which steps need PACE?
 
@@ -27,7 +27,7 @@ Apply PACE to a step if it meets ANY of these criteria:
 - ✅ Customer-facing or safety-critical
 - ✅ Has an external dependency (third-party, vendor, API outside your control)
 - ✅ Single point of failure (no current backup)
-- ✅ Compliance requirement — must complete regardless of system state
+- ✅ Compliance requirement, must complete regardless of system state
 
 Skip PACE for:
 - ❌ Tier 4–5 internal human steps without high risk
@@ -68,40 +68,40 @@ EMERGENCY    Last resort. Minimum viable action.
 
 **ALTERNATIVE**
 - Method: [different approach, same outcome]
-- Trigger: [observable condition that causes fallback — be specific]
+- Trigger: [observable condition that causes fallback, be specific]
 - Degradation: [what is slower/less accurate/more expensive]
 
 **CONTINGENT**
 - Method: [partial capability, degraded mode]
-- Trigger: [observable condition — Alternative also unavailable]
+- Trigger: [observable condition, Alternative also unavailable]
 - Acceptable degradation: [what the business can tolerate]
 - Recovery path: [how to re-enter Primary after contingent mode]
 
 **EMERGENCY**
-- Method: [analog-safe last resort — no digital dependency]
-- Trigger: [observable condition — all other levels unavailable]
+- Method: [analog-safe last resort, no digital dependency]
+- Trigger: [observable condition, all other levels unavailable]
 - Escalation: [who to contact, what to communicate]
 - Documentation: [what paper/manual record is kept]
 ```
 
 ---
 
-## Part B — RACI Matrix
+## Part B, RACI Matrix
 
 Build a RACI matrix mapping all actors (from `02-decompose/output/actors.md`) against all Stages.
 
 ### RACI definitions
 
-- **R** = Responsible — does the work for this stage
-- **A** = Accountable — owns the outcome; single point; the buck stops here
-- **C** = Consulted — provides input; two-way communication
-- **I** = Informed — receives update; one-way communication
+- **R** = Responsible, does the work for this stage
+- **A** = Accountable, owns the outcome; single point; the buck stops here
+- **C** = Consulted, provides input; two-way communication
+- **I** = Informed, receives update; one-way communication
 
 ### RACI rules to enforce
 
-- Every Stage must have exactly **one A** — flag if missing or multiple
-- Every Stage must have at least **one R** — flag if missing
-- Multiple Rs in a stage means coordination risk — note it
+- Every Stage must have exactly **one A**, flag if missing or multiple
+- Every Stage must have at least **one R**, flag if missing
+- Multiple Rs in a stage means coordination risk, note it
 - A system can be R but not A (accountability is always human)
 
 ### RACI format
@@ -109,10 +109,10 @@ Build a RACI matrix mapping all actors (from `02-decompose/output/actors.md`) ag
 ```markdown
 | | Stage 1 | Stage 2 | Stage 3 | Stage 4 | Stage 5 |
 |--|---------|---------|---------|---------|---------|
-| [Role A] | R | I | C | — | R |
+| [Role A] | R | I | C |, | R |
 | [Role B] | A | A | A | A | A |
-| [System X] | C | R | R | — | R |
-| [External] | I | — | I | — | I |
+| [System X] | C | R | R |, | R |
+| [External] | I |, | I |, | I |
 
 **Flags**:
 - Stage [N]: No A assigned → accountability gap ⚠️
@@ -121,7 +121,7 @@ Build a RACI matrix mapping all actors (from `02-decompose/output/actors.md`) ag
 
 ---
 
-## Output files — write to `output/`
+## Output files, write to `output/`
 
 | File | Contents | Required |
 |------|----------|----------|
@@ -137,7 +137,7 @@ Build a RACI matrix mapping all actors (from `02-decompose/output/actors.md`) ag
 Tell the human:
 > "Stage 04 complete. PACE analysis is in `04-pace-raci/output/pace-analysis.md` and the
 > RACI is in `raci-matrix.md`. The PACE emergency levels especially benefit from your
-> domain knowledge — what's the real last-resort procedure your team would follow?
+> domain knowledge, what's the real last-resort procedure your team would follow?
 > The RACI accountability column (A) is the most important to verify.
 > Say **proceed to stage 05** when ready."
 

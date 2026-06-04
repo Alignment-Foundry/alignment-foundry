@@ -1,7 +1,7 @@
 # Workspace State
 
 **Last updated**: [timestamp]
-**Active process**: [process name — or "none"]
+**Active process**: [process name, or "none"]
 **Current stage**: [01 / 02 / 03 / 04 / 05 / 06 / complete]
 **Status**: [waiting-for-input / in-progress / awaiting-human-review / complete]
 
@@ -20,18 +20,18 @@
 
 | Stage | Status | Human approved | Notes |
 |-------|--------|---------------|-------|
-| 01 — Intake | [ ] | [ ] | |
-| 02 — Decompose | [ ] | [ ] | |
-| 03 — Analyze | [ ] | [ ] | |
-| 04 — PACE/RACI | [ ] | [ ] | |
-| 05 — Artifacts | [ ] | [ ] | |
-| 06 — Monitor | [ ] ongoing | — | |
+| 01, Intake | [ ] | [ ] | |
+| 02, Decompose | [ ] | [ ] | |
+| 03, Analyze | [ ] | [ ] | |
+| 04, PACE/RACI | [ ] | [ ] | |
+| 05, Artifacts | [ ] | [ ] | |
+| 06, Monitor | [ ] ongoing |, | |
 
 ---
 
 ## Open questions
 
-[Any blockers or clarifications needed — write here rather than guessing]
+[Any blockers or clarifications needed, write here rather than guessing]
 
 ---
 

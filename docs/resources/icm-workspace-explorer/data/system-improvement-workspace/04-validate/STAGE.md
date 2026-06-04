@@ -1,4 +1,4 @@
-# Stage 04 — Validate
+# Stage 04, Validate
 
 **One job**: Apply each fix to dev/staging. Run the test command. Report results.
 
@@ -8,27 +8,27 @@
 
 ## For each fix proposal
 
-**Step 1 — Pre-flight check**
+**Step 1, Pre-flight check**
 Before applying:
 - Confirm target environment is dev or staging (never production at this stage)
 - Confirm test command is runnable
 - Confirm rollback plan is documented in the fix proposal
 
-**Step 2 — Apply to dev**
+**Step 2, Apply to dev**
 Apply the change exactly as written in the fix proposal.
 If the change involves multiple files/services, apply all of them.
-Do not modify the change while applying — if something needs changing, flag it.
+Do not modify the change while applying, if something needs changing, flag it.
 
-**Step 3 — Run test command**
+**Step 3, Run test command**
 Run the exact test command from the fix proposal.
 Record the actual output verbatim.
 
-**Step 4 — Apply to staging and monitor**
+**Step 4, Apply to staging and monitor**
 Apply to staging environment.
 Monitor for the specified window (default: 30 minutes).
 Record any new errors, metric changes, or unexpected behavior.
 
-**Step 5 — Write validation record**
+**Step 5, Write validation record**
 
 Write `04-validate/output/VAL-[NNN]-[run-id].md`:
 
@@ -51,15 +51,15 @@ Test output:
 
 Applied: [timestamp]
 Monitor window: [duration]
-Observations: [what was seen — metrics, logs, errors]
+Observations: [what was seen, metrics, logs, errors]
 Status: **STABLE** / **ISSUES NOTED**
 
 Issues noted (if any):
 [describe any unexpected behavior]
 
 ## Validation verdict
-**READY FOR REVIEW** — proceed to Stage 05
-/ **NEEDS REWORK** — [describe what failed]
+**READY FOR REVIEW**, proceed to Stage 05
+/ **NEEDS REWORK**, [describe what failed]
 
 ## Metrics before/after (if measurable)
 | Metric | Before | After | Delta |
@@ -78,7 +78,7 @@ Issues noted (if any):
    - Hypothesis for why it failed
    - Suggested revision to the fix
 4. Return to Stage 03 for revision
-5. Maximum 2 rework cycles — if fix still fails, escalate to human
+5. Maximum 2 rework cycles, if fix still fails, escalate to human
 
 ---
 

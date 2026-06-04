@@ -3,7 +3,7 @@
 ---
 
 /* ==========================================================================
-   Alex S. Moy — Alignment Foundry
+   Alex S. Moy, Alignment Foundry
    Brand-aligned styles. Palette and typography per Style Guide v1.0.
    Design language shared with the one-page conference reports:
    layered backdrops, accent eyebrows, scroll-reveal motion, accent-bar cards.
@@ -66,7 +66,7 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--deep-aqua); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--aquamarine); }
 
-/* Layout container — 12-col grid feel via max-width + gutters */
+/* Layout container, 12-col grid feel via max-width + gutters */
 .container {
   width: 100%;
   max-width: var(--max-width);
@@ -316,7 +316,7 @@ pre code { background: transparent; color: var(--text); padding: 0; }
   border-bottom: 1px solid var(--rule);
 }
 
-/* Layered radial glow — the depth the flat gradient was missing. */
+/* Layered radial glow, the depth the flat gradient was missing. */
 .hero-backdrop {
   position: absolute;
   inset: 0;
@@ -473,7 +473,7 @@ pre code { background: transparent; color: var(--text); padding: 0; }
   --card-accent: var(--aquamarine);
 }
 
-/* Accent bar wipes across the top on hover — the report card signature. */
+/* Accent bar wipes across the top on hover, the report card signature. */
 .card::before {
   content: "";
   position: absolute;

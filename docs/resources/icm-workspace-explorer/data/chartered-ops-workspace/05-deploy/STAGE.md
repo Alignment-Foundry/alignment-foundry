@@ -1,4 +1,4 @@
-# Stage 05 — Deploy
+# Stage 05, Deploy
 
 **One job**: Execute approved changes in sequence. Record what was done. Signal for outcome monitoring.
 
@@ -69,7 +69,7 @@ Write `05-deploy/completed/DEPLOY-[NNN]-[date].md` as you go:
 - Status: [stable / issues noted]
 
 ## Production deployment (if applicable)
-- Human authorization: confirmed — [DEC-NNN, [date]]
+- Human authorization: confirmed, [DEC-NNN, [date]]
 - Applied: [timestamp]
 - Initial observations: [first 30 minutes]
 - Monitoring scheduled until: [date+24h]
@@ -102,7 +102,7 @@ Write `05-deploy/completed/DEPLOY-[NNN]-[date].md` as you go:
 
 ## Hard limits that apply here too
 
-- Never modify IAM, secrets, audit logs, or systems outside scope — even if the proposal
+- Never modify IAM, secrets, audit logs, or systems outside scope, even if the proposal
   accidentally included them (escalate instead)
 - Never skip the dev → staging sequence for urgency
 - Never apply to production without explicit human authorization in the decision file

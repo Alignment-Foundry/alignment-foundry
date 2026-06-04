@@ -11,13 +11,13 @@ financial filing and a set of recent, relevant news items.
 
 ## Produces
 
-- `fetch-10q/output.md` — a reference to the latest quarterly filing.
-- `fetch-news/output.md` — a list of recent news items with links.
+- `fetch-10q/output.md`, a reference to the latest quarterly filing.
+- `fetch-news/output.md`, a list of recent news items with links.
 
 ## Tasks (ordered)
 
-1. **fetch-10q** — Identify and record the company's most recent quarterly filing.
-2. **fetch-news** — Collect recent news items about the company.
+1. **fetch-10q**, Identify and record the company's most recent quarterly filing.
+2. **fetch-news**, Collect recent news items about the company.
 
 ## Constraints
 

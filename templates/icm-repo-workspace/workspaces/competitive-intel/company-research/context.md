@@ -13,17 +13,17 @@ its financial position, recent product activity, and public positioning.
 ## Outputs
 
 - One artifact per task, under the project's `company-research/` path.
-- Final artifact: `format-output/write-summary/output.md` — the one-page brief.
+- Final artifact: `format-output/write-summary/output.md`, the one-page brief.
 
 ## Stages (ordered)
 
-1. **gather-sources** — Collect public filings and recent news on the company.
-2. **summarise** — Extract the key financial and product metrics from sources.
-3. **format-output** — Assemble the metrics into the one-page brief.
+1. **gather-sources**, Collect public filings and recent news on the company.
+2. **summarise**, Extract the key financial and product metrics from sources.
+3. **format-output**, Assemble the metrics into the one-page brief.
 
 ## Tools and integrations
 
-- `WebSearch` — locate filings, news, and the company's public pages.
+- `WebSearch`, locate filings, news, and the company's public pages.
 - No MCP servers are required for this workflow.
 
 ## Constraints

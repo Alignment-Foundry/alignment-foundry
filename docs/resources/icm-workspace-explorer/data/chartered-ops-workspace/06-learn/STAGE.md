@@ -1,4 +1,4 @@
-# Stage 06 — Learn
+# Stage 06, Learn
 
 **One job**: Close the loop. Measure outcomes. Update memory from confirmed results.
 Make the next cycle smarter.
@@ -11,7 +11,7 @@ Make the next cycle smarter.
 
 ---
 
-## Part A — Outcome measurement (after each deployment)
+## Part A, Outcome measurement (after each deployment)
 
 Read: `05-deploy/completed/DEPLOY-[NNN]-[date].md`
 Check: The metric(s) cited in the original proposal
@@ -28,7 +28,7 @@ Check: The metric(s) cited in the original proposal
 # OUTCOME-[NNN]: [Proposal title]
 
 **Deployment**: DEPLOY-[NNN]
-**Measured**: [date — at least 24h after production deployment]
+**Measured**: [date, at least 24h after production deployment]
 **Measured by**: [metric source]
 
 ## Prediction vs reality
@@ -60,7 +60,7 @@ Net progress toward mandate: [positive / neutral / negative]
 
 ---
 
-## Part B — Semantic memory updates
+## Part B, Semantic memory updates
 
 **Only write to semantic memory from confirmed outcomes.** Never from hypotheses.
 
@@ -72,7 +72,7 @@ After writing the outcome record:
 
 ---
 
-## Part C — Weekly consolidation
+## Part C, Weekly consolidation
 
 At the end of each week, write `06-learn/weekly-summaries/week-[YYYY-WNN].md`:
 
@@ -95,7 +95,7 @@ On track to hit target by [date]: yes / no / unclear
 [Any recurring themes, emerging issues, or signals to watch]
 
 ## What I got wrong
-[Brief honest account of rejected proposals or failed predictions — and why]
+[Brief honest account of rejected proposals or failed predictions, and why]
 
 ## Model updates made this week
 [Summary of what was written to semantic memory]
@@ -108,7 +108,7 @@ On track to hit target by [date]: yes / no / unclear
 
 ## What this stage does NOT do
 
-- Does not write to `_memory/constitutional/` — only humans write there
+- Does not write to `_memory/constitutional/`, only humans write there
 - Does not retroactively change a decision record
 - Does not mark a finding as resolved without a measured outcome
 - Does not update baseline metrics more than once per month

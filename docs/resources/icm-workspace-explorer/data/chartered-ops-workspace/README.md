@@ -13,10 +13,10 @@ and maintains a specific system in collaboration with human reviewers.
 ## What makes this workspace different
 
 Unlike a one-shot workspace, this one accumulates:
-- **Constitutional memory** — the charter, immutable without human approval
-- **Working memory** — session state, rebuilt each session from the persistent record
-- **Episodic memory** — rolling history of what was tried and what worked
-- **Semantic memory** — confirmed system knowledge, written only from verified outcomes
+- **Constitutional memory**, the charter, immutable without human approval
+- **Working memory**, session state, rebuilt each session from the persistent record
+- **Episodic memory**, rolling history of what was tried and what worked
+- **Semantic memory**, confirmed system knowledge, written only from verified outcomes
 
 The agent deepens its understanding of your system over weeks and months.
 The scope stays fixed. The depth grows.
@@ -37,7 +37,7 @@ under-perform (too cautious) or over-reach (too confident). The charter resolves
 Each session follows this pattern:
 1. Agent reads charter + SESSION.md
 2. Agent checks review queue and open findings
-3. Agent runs Stage 02 (observe) — monitors for new anomalies
+3. Agent runs Stage 02 (observe), monitors for new anomalies
 4. If threshold met → drafts proposal in Stage 03
 5. Proposal queued for human review in Stage 04
 6. After human approves → Stage 05 deploys

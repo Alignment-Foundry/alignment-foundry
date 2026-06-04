@@ -1,12 +1,12 @@
-# Stage 06 — Ongoing Monitor & Improve
+# Stage 06, Ongoing Monitor & Improve
 
-**One job**: Capture exceptions, edge cases, and real-world deviations — and propose
+**One job**: Capture exceptions, edge cases, and real-world deviations, and propose
 targeted updates to the process model.
 
 **When to activate**: After Stage 05 is complete and the process has been running in
 production for at least 2 weeks.
 
-**This stage runs continuously** — it is never "complete." Each monitoring session is
+**This stage runs continuously**; it is never "complete." Each monitoring session is
 a cycle: observe → classify → propose → human approves → update.
 
 ---
@@ -15,13 +15,13 @@ a cycle: observe → classify → propose → human approves → update.
 
 A "finding" worth logging is any of the following:
 
-1. **Process exception** — a step that couldn't complete as documented; required a workaround
-2. **Undocumented path** — someone handled a case not covered by the current decomposition
-3. **Assumption invalidated** — something the decomposition assumed turns out to be wrong
-4. **Automation failure** — a Tier 1–2 step failed or required manual intervention
-5. **Performance deviation** — cycle time or error rate has drifted from the A8 baseline
-6. **Human feedback** — an operator notes that a step description is wrong or incomplete
-7. **Scope boundary hit** — someone tries to use this process for something adjacent but out of scope
+1. **Process exception**, a step that couldn't complete as documented; required a workaround
+2. **Undocumented path**, someone handled a case not covered by the current decomposition
+3. **Assumption invalidated**, something the decomposition assumed turns out to be wrong
+4. **Automation failure**, a Tier 1–2 step failed or required manual intervention
+5. **Performance deviation**, cycle time or error rate has drifted from the A8 baseline
+6. **Human feedback**, an operator notes that a step description is wrong or incomplete
+7. **Scope boundary hit**, someone tries to use this process for something adjacent but out of scope
 
 ---
 
@@ -38,7 +38,7 @@ Write to `findings/FIND-[NNN]-[slug].md`:
 **Type**: exception / undocumented-path / assumption / automation-failure / performance / feedback / scope
 
 ## What happened
-[Plain description — what occurred that wasn't covered by the process model?]
+[Plain description, what occurred that wasn't covered by the process model?]
 
 ## Evidence
 [Log lines, error messages, operator quote, metric readings]
@@ -51,7 +51,7 @@ Write to `findings/FIND-[NNN]-[slug].md`:
 [Confidence: XX%]
 
 ## Similar past findings
-[Check this folder — has this pattern occurred before?]
+[Check this folder, has this pattern occurred before?]
 ```
 
 ---
@@ -70,7 +70,7 @@ Move a finding to a proposal when:
 Write to `proposals/PROP-[NNN]-[slug].md`:
 
 ```markdown
-# PROP-[NNN]: Update — [what changes]
+# PROP-[NNN]: Update, [what changes]
 
 **Finding(s)**: FIND-[NNN], [FIND-NNN, ...]
 **Affected artifact(s)**: [A2 / A4 / A6 / A9 / etc.]
@@ -88,11 +88,11 @@ Write to `proposals/PROP-[NNN]-[slug].md`:
 [Why this change? What evidence supports it?]
 
 ## Artifacts to update
-- [ ] `05-artifacts/output/A[N]-[name].md` — [what changes]
-- [ ] `02-decompose/output/decomposition.md` — [what changes] (if A2 affected)
+- [ ] `05-artifacts/output/A[N]-[name].md`, [what changes]
+- [ ] `02-decompose/output/decomposition.md`, [what changes] (if A2 affected)
 
 ## Risk
-[low / medium / high] — [brief rationale]
+[low / medium / high], [brief rationale]
 ```
 
 ---
@@ -151,5 +151,5 @@ The human:
 
 - Does not update artifact files without human approval
 - Does not expand the process scope beyond what was originally defined
-- Does not make automation changes — it proposes documentation/model updates only
-- Does not modify `_core/` reference files — those are workspace-level, not process-level
+- Does not make automation changes; it proposes documentation/model updates only
+- Does not modify `_core/` reference files; those are workspace-level, not process-level

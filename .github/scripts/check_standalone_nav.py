@@ -11,7 +11,7 @@ Every one-page report (docs/reports/*.html) and field reference
   4. The supporting CSS rules are present.
 
 The ICM Workspace Explorer (docs/resources/<dir>/index.html) is intentionally
-out of scope — it is a bespoke app, not a templated briefing — so only
+out of scope; it is a bespoke app, not a templated briefing, so only
 top-level *.html files in reports/ and resources/ are checked.
 
 Exits non-zero with an actionable report if any page is non-compliant.
@@ -75,7 +75,7 @@ def main() -> int:
         glob.glob("docs/resources/*.html")
     )
     if not files:
-        print("No standalone report/resource HTML pages found — nothing to check.")
+        print("No standalone report/resource HTML pages found, nothing to check.")
         return 0
 
     failures = {f: errs for f in files if (errs := check_file(f))}

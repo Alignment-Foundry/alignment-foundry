@@ -1,4 +1,4 @@
-# Stage 02 — Observe
+# Stage 02, Observe
 
 **One job**: Monitor the system. Detect anomalies, new patterns, and performance deviations.
 Surface structured findings. This stage runs every session.
@@ -9,11 +9,11 @@ Surface structured findings. This stage runs every session.
 
 ## Every session: run through this checklist
 
-- [ ] **Check for new exceptions** since last session — compare against `baseline/`
-- [ ] **Check performance metrics** — flag any > 15% deviation from baseline
-- [ ] **Check deployment events** — any new deploys? Apply heightened monitoring for 24h
-- [ ] **Update open findings** — add new occurrences to any existing `findings/FIND-NNN.md`
-- [ ] **Mandate metric** — update current value in `SESSION.md`
+- [ ] **Check for new exceptions** since last session, compare against `baseline/`
+- [ ] **Check performance metrics**, flag any > 15% deviation from baseline
+- [ ] **Check deployment events**, any new deploys? Apply heightened monitoring for 24h
+- [ ] **Update open findings**, add new occurrences to any existing `findings/FIND-NNN.md`
+- [ ] **Mandate metric**, update current value in `SESSION.md`
 
 ---
 
@@ -42,7 +42,7 @@ Do NOT open a finding for:
 # FIND-[NNN]: [Brief descriptive title]
 
 **Detected**: [timestamp]
-**Stage/step affected**: [Stage N / Step N.N — in the managed process]
+**Stage/step affected**: [Stage N / Step N.N, in the managed process]
 **Severity**: critical / high / medium / low
 **Status**: new / investigating / ready-to-propose / proposed / resolved
 **Occurrences**: [N] in [window]
@@ -75,7 +75,7 @@ Move a finding to Stage 03 when:
 - Human requests: **immediately**
 
 Write `02-observe/anomalies/READY-[FIND-NNN].md` containing just:
-`"Ready to propose fix for FIND-[NNN] — [one-line summary]"`
+`"Ready to propose fix for FIND-[NNN], [one-line summary]"`
 Then proceed to Stage 03 for that finding.
 
 ---
@@ -101,5 +101,5 @@ Format for `02-observe/baseline/[metric-name].md`:
 **Last updated**: [date]
 ```
 
-Do not update baseline during an active incident — that normalizes the anomaly.
+Do not update baseline during an active incident; that normalizes the anomaly.
 Update baseline monthly during stable operation.

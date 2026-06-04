@@ -1,18 +1,18 @@
 # System Architecture Knowledge
-## Semantic Memory — Written from confirmed outcomes only
+## Semantic Memory, Written from confirmed outcomes only
 
 **Last updated**: [date]
 **Updated by**: [agent session that confirmed this]
 **Source**: [outcome file that confirmed this knowledge]
 
 > This file is written only when an outcome confirms or corrects a belief.
-> Do not update from hypotheses or proposals — only from deployed and measured changes.
+> Do not update from hypotheses or proposals, only from deployed and measured changes.
 
 ---
 
 ## System overview
 
-[One paragraph describing the system this agent manages — updated as understanding deepens]
+[One paragraph describing the system this agent manages, updated as understanding deepens]
 
 ---
 
@@ -26,7 +26,7 @@
 
 ## Known data flows
 
-[How data moves through the system — updated as flows are confirmed]
+[How data moves through the system, updated as flows are confirmed]
 
 ```
 [source] → [transform] → [destination]

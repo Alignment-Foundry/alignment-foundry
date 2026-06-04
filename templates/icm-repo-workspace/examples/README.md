@@ -23,7 +23,7 @@ workspaces/competitive-intel/company-research/gather-sources/fetch-10q/
 
 Every task directory holds exactly two files: `output.md` (or `output.json`
 where structured data fits better) and `metadata.json` (the run record). The
-content here is illustrative sample data — not a real competitive analysis.
+content here is illustrative sample data, not a real competitive analysis.
 
 This run corresponds to:
 

@@ -5,7 +5,7 @@
 
 ---
 
-## 10 Sensing Agents — Domain Coverage
+## 10 Sensing Agents, Domain Coverage
 
 | Agent | Checks | Key signals |
 |-------|--------|-------------|
@@ -22,7 +22,7 @@
 
 ---
 
-## Coordinator — Correlation Heuristics
+## Coordinator, Correlation Heuristics
 
 **Cluster when 2+ of these are true**:
 - Same file, service, endpoint, or database table
@@ -38,10 +38,10 @@
 
 ---
 
-## Remediation Agent — Fix Quality Standards
+## Remediation Agent, Fix Quality Standards
 
 Every fix proposal must include:
-- Exact before/after diff (not description — actual code/config)
+- Exact before/after diff (not description, actual code/config)
 - Runnable test command with expected output
 - Rollback plan with time estimate
 - Scope check result (all 4 questions answered)
@@ -58,7 +58,7 @@ Every fix proposal must include:
 ## Severity escalation rules
 
 If a finding is `critical`:
-- Bypass normal queue — surface immediately
+- Bypass normal queue, surface immediately
 - Require second human reviewer before production
 - Monitor post-deploy for minimum 48h (vs standard 24h)
 

@@ -6,7 +6,7 @@ lede: Ideas, industry insights, and resources for enterprise AI alignment.
 permalink: /
 ---
 
-AI doesn't fail because of technology. It fails because leaders, teams, and strategies aren't aligned. **Alignment Foundry** is the workspace behind [alexsmoy.com](https://alexsmoy.com) — the tools, ideas, and thinking I'm developing at the intersection of enterprise AI strategy, Centers of Excellence, and coalition-building.
+AI doesn't fail because of technology. It fails because leaders, teams, and strategies aren't aligned. **Alignment Foundry** is the workspace behind [alexsmoy.com](https://alexsmoy.com), the tools, ideas, and thinking I'm developing at the intersection of enterprise AI strategy, Centers of Excellence, and coalition-building.
 
 ## What's here
 
@@ -14,7 +14,7 @@ AI doesn't fail because of technology. It fails because leaders, teams, and stra
   <a class="card reveal" data-stagger="0" href="{{ '/projects/' | relative_url }}">
     <p class="card-meta">Build</p>
     <h3>Projects</h3>
-    <p>Workspace experiments, prototypes, and GitHub Pages projects exploring how enterprise leaders can harness AI as a tool — not a takeover.</p>
+    <p>Workspace experiments, prototypes, and GitHub Pages projects exploring how enterprise leaders can harness AI as a tool, not a takeover.</p>
   </a>
   <a class="card reveal" data-stagger="1" href="{{ '/reports/' | relative_url }}">
     <p class="card-meta">Briefings</p>

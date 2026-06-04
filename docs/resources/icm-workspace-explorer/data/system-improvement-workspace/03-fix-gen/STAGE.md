@@ -1,8 +1,8 @@
-# Stage 03 — Fix Generation
+# Stage 03, Fix Generation
 
 **One job**: For each Issue, generate a specific, testable fix proposal with full context.
 
-**No skill needed** — this stage uses the Issue context directly.
+**No skill needed**; this stage uses the Issue context directly.
 **Input**: `02-correlate/output/issues-[run-id].md` (work top-priority first)
 
 ---
@@ -17,10 +17,10 @@ Work through issues in priority order. Write each to `03-fix-gen/output/FIX-[NNN
 **Issue**: ISS-[NNN]
 **Run**: [run-id]
 **Risk level**: low / medium / high
-**Requires second reviewer**: [yes — for critical + IAM/DB/firewall changes] / no
+**Requires second reviewer**: [yes, for critical + IAM/DB/firewall changes] / no
 
 ## Root cause (from correlation)
-[Copy from ISS-NNN — expand with any additional analysis]
+[Copy from ISS-NNN, expand with any additional analysis]
 Confidence: [XX]%
 
 ## Proposed fix
@@ -29,7 +29,7 @@ Confidence: [XX]%
 **File/service/config**: [exact location]
 
 **Before**:
-[exact current state — code, config, SQL, YAML, etc.]
+[exact current state, code, config, SQL, YAML, etc.]
 
 **After**:
 [exact proposed state]
@@ -46,7 +46,7 @@ Confidence: [XX]%
 - Rollback is straightforward: ✓ / ✗
 
 ## Test command
-[Exact runnable command — must be copy-pasteable]
+[Exact runnable command, must be copy-pasteable]
 Expected output: [what a passing test looks like]
 
 ## Expected impact
@@ -57,7 +57,7 @@ Regression risk: [none / low / describe]
 [Does this fix change any system's resilience? If yes, which PACE level needs updating?]
 
 ## Rollback plan
-[Step-by-step — how to undo this if it causes problems]
+[Step-by-step, how to undo this if it causes problems]
 Rollback effort: [< 5 min / 5–30 min / > 30 min]
 
 ## Deployment notes

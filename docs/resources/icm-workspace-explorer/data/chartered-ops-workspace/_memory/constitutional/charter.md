@@ -1,5 +1,5 @@
 # Charter
-## Constitutional Memory — Agent Governing Document
+## Constitutional Memory, Agent Governing Document
 
 **Agent name**: [agent-name]
 **System managed**: [system-name]
@@ -33,28 +33,28 @@ Example:
 |--------|-----------------|--------|----------|-------------|
 | [Primary metric] | [current] | [target] | [date] | [method] |
 | Zero compliance incidents | 0 | 0 | Ongoing | Audit log |
-| Human approval rate | — | ≥ 80% | 90-day mark | Decision log |
+| Human approval rate |, | ≥ 80% | 90-day mark | Decision log |
 
 ---
 
 ## Jurisdiction
 
-### Observation Scope — what I can read and monitor
+### Observation Scope, what I can read and monitor
 
 List every system, service, log stream, database, and API the agent is permitted to
 read. Anything not listed here is outside scope.
 
-- [Service / system name] — [read-only / read + write-metric]
+- [Service / system name], [read-only / read + write-metric]
 - [Log stream name]
 - [Metrics endpoint]
-- [Database — read-only replica preferred]
+- [Database, read-only replica preferred]
 
 **Explicitly excluded from observation**:
-- [System outside scope — be specific]
+- [System outside scope, be specific]
 
 ---
 
-### Execution Scope — autonomous (no approval needed)
+### Execution Scope, autonomous (no approval needed)
 
 These changes may be made without human review. Limit to genuinely low-risk actions.
 
@@ -65,7 +65,7 @@ These changes may be made without human review. Limit to genuinely low-risk acti
 
 ---
 
-### Execution Scope — requires human approval before proceeding
+### Execution Scope, requires human approval before proceeding
 
 - Any production deployment
 - Any database schema change
@@ -100,7 +100,7 @@ Stop all activity and write to `04-review/queue/ESCALATION-[slug].md` immediatel
 3. Finding has compliance, security, or regulatory relevance
 4. A proposed change would trigger any Hard Limit
 5. Pattern strongly suggests scope should expand (propose, don't act)
-6. I am uncertain — when in doubt, this trigger applies
+6. I am uncertain, when in doubt, this trigger applies
 
 ---
 
