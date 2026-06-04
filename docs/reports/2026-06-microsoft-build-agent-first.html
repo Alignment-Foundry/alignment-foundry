@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Agent-First Manifesto — Microsoft Build 2026 · Alex S. Moy</title>
+<meta name="description" content="A field guide drawn from the 25+ announcements at Microsoft Build 2026: how Windows, Azure, GitHub, and Microsoft 365 become the operating environment for governed enterprise agents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" type="image/svg+xml" href="/alignment-foundry/assets/img/logo.svg">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep-blue:#0A2342;--deep-aqua:#14786C;--charcoal:#1C1C1E;
+  --aquamarine:#67FCF1;--light-teal:#96E5AC;--white:#FFFFFF;
+  --gradient:linear-gradient(135deg,#0A2342 0%,#14786C 55%,#67FCF1 100%);
+  --w90:rgba(255,255,255,.90);--w60:rgba(255,255,255,.60);
+  --w30:rgba(255,255,255,.30);--w10:rgba(255,255,255,.10);
+  --w06:rgba(255,255,255,.06);
+  --aq20:rgba(103,252,241,.20);--aq10:rgba(103,252,241,.10);--aq06:rgba(103,252,241,.06);
+  --font:'Hanken Grotesk',sans-serif;
+  --sec:96px;--maxw:1200px;--gutter:48px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--deep-blue);color:var(--white);font-family:var(--font);font-size:17px;line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--deep-blue)}::-webkit-scrollbar-thumb{background:var(--aquamarine)}
+.inner{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+a{color:inherit}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,35,66,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--w10)}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-weight:700;font-size:15px;color:var(--white);letter-spacing:-.01em;display:flex;align-items:center;gap:10px;text-decoration:none;transition:opacity .2s}
+.nav-brand:hover{opacity:.82}
+.nav-logo{width:26px;height:26px;display:block;flex-shrink:0}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{font-size:13px;font-weight:500;color:var(--w60);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--aquamarine)}
+.nav-back{font-size:13px;font-weight:700;color:var(--aquamarine);text-decoration:none;display:flex;align-items:center;gap:6px;transition:gap .2s}
+.nav-back:hover{gap:10px}
+/* HERO */
+.hero{min-height:100vh;background:var(--deep-blue);display:flex;flex-direction:column;justify-content:flex-end;padding-top:64px;overflow:hidden;position:relative}
+.hero-backdrop{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 80% 20%,rgba(20,120,108,.35) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 10% 70%,rgba(103,252,241,.08) 0%,transparent 55%),var(--deep-blue);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(103,252,241,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(103,252,241,.04) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom,transparent,rgba(0,0,0,.4) 30%,rgba(0,0,0,.4) 70%,transparent);pointer-events:none}
+.hero-content{position:relative;z-index:2;padding:var(--sec) var(--gutter) 80px;max-width:var(--maxw);margin:0 auto;width:100%}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.ey-line{width:32px;height:2px;background:var(--aquamarine)}
+.ey-text{font-size:13px;font-weight:500;color:var(--aquamarine);letter-spacing:.06em}
+.hero h1{font-size:clamp(40px,6.5vw,80px);font-weight:700;line-height:1.05;letter-spacing:-.025em;color:var(--white);max-width:860px;margin-bottom:28px}
+.hero h1 .aq{color:var(--aquamarine)}
+.hero-sub{font-size:19px;font-weight:400;color:var(--w90);line-height:1.65;max-width:640px;margin-bottom:52px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--w10);padding-top:32px}
+.hm-item{padding:0 40px 0 0}
+.hm-label{font-size:11px;font-weight:500;color:var(--w60);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.hm-value{font-size:14px;font-weight:700;color:var(--white)}
+.hm-value.aq{color:var(--aquamarine)}
+/* SECTION LABELS */
+.s-eye{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.s-eye .ln{width:28px;height:2px;background:var(--aquamarine)}
+.s-eye .lb{font-size:12px;font-weight:500;color:var(--aquamarine);letter-spacing:.08em;text-transform:uppercase}
+.s-head{font-size:clamp(28px,3.5vw,44px);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:var(--white);margin-bottom:16px}
+.s-head .aq{color:var(--aquamarine)}
+.s-intro{font-size:17px;font-weight:400;color:var(--w90);max-width:660px;line-height:1.7;margin-bottom:60px}
+/* INTRO */
+.intro-sec{padding:var(--sec) 0;background:var(--deep-blue);border-top:1px solid var(--w10)}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:60px}
+.ic{background:var(--w06);border:1px solid var(--w10);padding:36px 32px;position:relative;transition:background .25s}
+.ic:hover{background:var(--w10)}
+.ic::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--deep-aqua);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.ic:hover::before{transform:scaleX(1)}
+.ic-num{font-size:11px;font-weight:700;color:var(--deep-aqua);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.ic h3{font-size:17px;font-weight:700;color:var(--white);margin-bottom:12px;line-height:1.3}
+.ic p{font-size:15px;font-weight:400;color:var(--w90);line-height:1.65}
+/* PULL QUOTE */
+.pq{padding:32px 40px;border-left:4px solid var(--aquamarine);background:var(--aq06);margin:0 0 60px}
+.pq p{font-size:24px;font-weight:700;color:var(--deep-aqua);line-height:1.45;margin-bottom:12px}
+.pq cite{font-size:13px;font-weight:500;color:var(--w60);letter-spacing:.04em;font-style:normal}
+/* NUMBERS */
+.num-row{display:grid;grid-template-columns:repeat(6,1fr);gap:2px}
+.nc{background:var(--w06);border:1px solid var(--w10);padding:30px 22px;text-align:center}
+.nb{font-size:46px;font-weight:700;color:var(--aquamarine);line-height:1;letter-spacing:-.02em;margin-bottom:10px}
+.nl{font-size:13px;font-weight:500;color:var(--w90);line-height:1.4}
+/* ANNOUNCEMENTS */
+.ann-sec{padding:var(--sec) 0;background:var(--charcoal);border-top:1px solid var(--w10);border-bottom:1px solid var(--w10)}
+.ann-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.ann-card{background:var(--w06);border:1px solid var(--w10);padding:32px 30px;cursor:pointer;position:relative;overflow:hidden;transition:background .25s,transform .25s;text-align:left;width:100%;font-family:var(--font);color:inherit;display:block}
+.ann-card:hover{background:var(--w10);transform:translateY(-2px)}
+.ann-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--card-accent,var(--aquamarine));transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.ann-card:hover::before{transform:scaleX(1)}
+.ann-icon{font-size:24px;margin-bottom:14px}
+.ann-tag{font-size:11px;font-weight:700;color:var(--card-accent,var(--aquamarine));letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.ann-title{font-size:18px;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:10px}
+.ann-desc{font-size:14px;font-weight:400;color:var(--w60);line-height:1.6}
+.ann-more{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--card-accent,var(--aquamarine))}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:300;background:rgba(10,35,66,.88);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--deep-blue);border:1px solid var(--w30);max-width:640px;width:100%;max-height:84vh;overflow-y:auto;transform:translateY(18px);transition:transform .3s}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-header{padding:28px 36px;border-bottom:1px solid var(--w10);display:flex;justify-content:space-between;align-items:flex-start;gap:16px;position:sticky;top:0;background:var(--deep-blue);z-index:1}
+.modal-tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--aquamarine);margin-bottom:8px}
+.modal-title{font-size:24px;font-weight:700;color:var(--white);line-height:1.2;letter-spacing:-.01em}
+.modal-close{background:var(--w06);border:1px solid var(--w10);color:var(--w60);cursor:pointer;font-size:16px;width:34px;height:34px;border-radius:4px;flex-shrink:0;transition:all .2s;font-family:var(--font)}
+.modal-close:hover{background:var(--aquamarine);color:var(--deep-blue)}
+.modal-body{padding:32px 36px;font-size:15px;color:var(--w90);line-height:1.75}
+.modal-body p{margin-bottom:16px}
+.modal-body p:last-child{margin-bottom:0}
+.modal-body strong{font-weight:700;color:var(--white)}
+.modal-body a{color:var(--aquamarine);text-decoration:none}
+.modal-body a:hover{text-decoration:underline}
+.modal-body em{color:var(--w60);font-size:13px}
+/* BIG STATEMENT */
+.big{padding:80px var(--gutter);background:var(--gradient);text-align:center}
+.big p{font-size:clamp(22px,3.2vw,34px);font-weight:700;color:var(--white);letter-spacing:-.02em;max-width:820px;margin:0 auto;line-height:1.35}
+/* ANALYSIS TABS */
+.an-sec{padding:var(--sec) 0;background:var(--deep-blue);border-top:1px solid var(--w10)}
+.tab-strip{display:flex;gap:2px;background:rgba(10,35,66,.6);border:1px solid var(--w10);padding:4px;margin-bottom:40px;flex-wrap:wrap}
+.tb{flex:1;min-width:150px;padding:14px 18px;background:transparent;border:none;cursor:pointer;font-family:var(--font);font-size:13px;font-weight:700;color:var(--w60);text-align:left;transition:all .22s;letter-spacing:.01em;border-radius:2px}
+.tb:hover{color:var(--white);background:var(--w06)}
+.tb.active{background:var(--deep-aqua);color:var(--white)}
+.an-panel{display:none;animation:pin .35s ease}
+.an-panel.active{display:block}
+@keyframes pin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.an-panel h3{font-size:28px;font-weight:700;color:var(--white);letter-spacing:-.02em;margin-bottom:18px;line-height:1.2}
+.an-panel p{font-size:16px;font-weight:400;color:var(--w90);line-height:1.8;max-width:720px;margin-bottom:16px}
+.an-panel p:last-child{margin-bottom:0}
+/* TIMELINE */
+.tl-sec{padding:var(--sec) 0;background:var(--charcoal);border-top:1px solid var(--w10);border-bottom:1px solid var(--w10)}
+.tl{position:relative;padding-left:52px}
+.tl::before{content:'';position:absolute;left:10px;top:6px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--aquamarine),var(--deep-aqua),transparent)}
+.ti{position:relative;margin-bottom:44px;opacity:0;transform:translateX(-8px);transition:opacity .5s ease,transform .5s ease}
+.ti.visible{opacity:1;transform:translateX(0)}
+.td{position:absolute;left:-46px;top:3px;width:14px;height:14px;border-radius:50%;background:var(--charcoal);border:2px solid var(--aquamarine);transition:background .25s}
+.ti:hover .td{background:var(--aquamarine)}
+.t-date{font-size:11px;font-weight:700;color:var(--aquamarine);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.t-title{font-size:16px;font-weight:700;color:var(--white);margin-bottom:6px}
+.t-desc{font-size:14px;font-weight:400;color:var(--w60);line-height:1.65}
+/* IMPACT */
+.impact-sec{padding:var(--sec) 0;background:var(--deep-blue);border-top:1px solid var(--w10)}
+.impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.iq{background:var(--w06);border:1px solid var(--w10);padding:36px 32px}
+.iq-h{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--w10)}
+.iq.now .iq-h{color:var(--aquamarine)}
+.iq.soon .iq-h{color:var(--light-teal)}
+.iq.mid .iq-h{color:var(--deep-aqua)}
+.iq.long .iq-h{color:var(--w60)}
+.iq ul{list-style:none}
+.iq li{font-size:14px;font-weight:400;color:var(--w90);padding:10px 0;border-bottom:1px solid var(--w10);display:flex;gap:10px;line-height:1.5}
+.iq li:last-child{border-bottom:none}
+.iq li::before{content:'\2192';color:var(--deep-aqua);flex-shrink:0;font-weight:700}
+/* CTA */
+.cta{padding:80px var(--gutter);background:var(--gradient);text-align:center}
+.cta h2{font-size:clamp(24px,3.5vw,40px);font-weight:700;color:var(--white);letter-spacing:-.02em;margin-bottom:16px}
+.cta p{font-size:17px;font-weight:400;color:rgba(255,255,255,.85);max-width:600px;margin:0 auto 36px;line-height:1.7}
+.cta-btn{display:inline-block;background:var(--aquamarine);color:var(--deep-blue);font-family:var(--font);font-size:16px;font-weight:700;padding:16px 40px;border-radius:4px;text-decoration:none;letter-spacing:.02em;transition:background .2s}
+.cta-btn:hover{background:#ffffff}
+/* CITATIONS */
+.cite-sec{padding:var(--sec) 0;background:var(--charcoal);border-top:1px solid var(--w10)}
+.cg{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+a.cc{display:flex;gap:16px;padding:18px 20px;background:var(--w06);border:1px solid var(--w10);text-decoration:none;color:inherit;transition:all .2s}
+a.cc:hover{background:var(--w10);border-color:var(--w30)}
+.cn{font-size:12px;font-weight:700;color:var(--aquamarine);min-width:24px;padding-top:1px}
+.cc-c{flex:1}
+.cc-t{font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px;line-height:1.35}
+.cc-m{font-size:11px;font-weight:400;color:var(--w60)}
+.cc-a{font-size:16px;color:var(--w30);align-self:center;transition:all .2s}
+a.cc:hover .cc-a{color:var(--aquamarine);transform:translateX(4px)}
+/* FOOTER */
+footer{padding:36px var(--gutter);background:var(--deep-blue);border-top:1px solid var(--w10)}
+.fi{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+footer p{font-size:13px;font-weight:400;color:var(--w60)}
+footer a{color:var(--aquamarine);text-decoration:none;font-weight:700}
+.fb{font-size:13px;font-weight:700;color:var(--aquamarine)}
+/* SCROLL REVEAL */
+.fu{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.fu.visible{opacity:1;transform:translateY(0)}
+/* RESPONSIVE */
+@media(max-width:960px){
+  :root{--gutter:24px;--sec:64px}
+  .three-col,.ann-grid{grid-template-columns:1fr}
+  .num-row{grid-template-columns:1fr 1fr}
+  .impact-grid{grid-template-columns:1fr}
+  .cg{grid-template-columns:1fr}
+  .tab-strip{flex-direction:column}
+  .tb{min-width:unset}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/alignment-foundry/" aria-label="The Alignment Foundry — home">
+      <svg class="nav-logo" viewBox="0 0 92 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M45.7832 0.748535C71.0919 0.748733 91.6084 21.266 91.6084 46.5747C91.6081 71.8832 71.0917 92.3997 45.7832 92.3999C27.9804 92.3999 12.5484 82.248 4.96094 67.4175C5.10819 67.4218 5.2566 67.4253 5.40625 67.4253C6.7425 67.4253 8.0085 67.1617 9.2041 66.6343C10.3997 66.1068 11.4548 65.2801 12.3691 64.1548C12.5243 63.9651 12.6715 63.7656 12.8135 63.5581L13.2656 66.8979H19.2793V64.8052C20.1939 65.5053 21.2457 66.0815 22.4385 66.5288C23.8451 67.0563 25.4282 67.3198 27.1865 67.3198C29.1908 67.3198 30.9314 66.986 32.4082 66.3179C33.8852 65.6497 35.0281 64.7 35.8369 63.4692C35.8866 63.3937 35.9338 63.3168 35.9805 63.2397V66.8979H40.4648V52.9194C40.4648 51.0206 40.7108 49.4383 41.2031 48.1724C41.6954 46.9065 42.3983 45.9567 43.3125 45.3237C44.2268 44.6556 45.3171 44.3218 46.583 44.3218C48.3412 44.3218 49.6775 44.9368 50.5918 46.1675C51.5061 47.3983 51.9639 49.2625 51.9639 51.7593V66.8979H56.4473V52.9194C56.4473 51.0207 56.6757 49.4383 57.1328 48.1724C57.6251 46.8712 58.3113 45.904 59.1904 45.271C60.1047 44.638 61.195 44.3218 62.4609 44.3218C63.7971 44.3218 64.8524 44.638 65.626 45.271C66.4347 45.904 67.0146 46.8011 67.3662 47.9614C67.753 49.1218 67.9463 50.5109 67.9463 52.1284V66.8979H72.3779V51.0737C72.3779 49.1396 72.0783 47.3808 71.4805 45.7983C70.8827 44.1809 69.9338 42.8972 68.6328 41.9478C67.3317 40.9631 65.608 40.4712 63.4629 40.4712C61.775 40.4712 60.3157 40.805 59.085 41.4731C57.8893 42.1061 56.8869 43.0558 56.0781 44.3218C55.9079 44.5808 55.7456 44.8532 55.5879 45.1372C55.4169 44.7716 55.2294 44.4291 55.0234 44.1108C54.2498 42.8801 53.2649 41.9655 52.0693 41.3677C50.8738 40.7699 49.4847 40.4712 47.9023 40.4712C46.9529 40.4712 46.0383 40.6117 45.1592 40.8931C44.3152 41.1744 43.5236 41.6136 42.7852 42.2114C42.0467 42.7741 41.3966 43.513 40.834 44.4272C40.7046 44.6429 40.5815 44.8691 40.4648 45.106V40.8931H35.9805V45.2202C35.075 43.6725 33.8322 42.5111 32.25 41.7368C30.6324 40.8928 28.8384 40.4712 26.8691 40.4712C24.1617 40.4713 21.9642 41.139 20.2764 42.4751C19.2371 43.2932 18.5245 44.2784 18.1387 45.4302C17.6642 44.5375 17.0434 43.745 16.2725 43.0552C14.2681 41.2618 11.4724 40.3648 7.88574 40.3647C5.67033 40.3647 3.59523 40.6996 1.66113 41.3677C1.16757 41.5322 0.676353 41.7252 0.1875 41.9468C2.50744 18.8111 22.0363 0.748535 45.7832 0.748535ZM19.2793 51.7769C19.633 52.1715 20.0344 52.5186 20.4873 52.814C21.2959 53.3413 22.1924 53.7807 23.1768 54.1323C24.1965 54.484 25.199 54.7836 26.1836 55.0298C27.344 55.3111 28.4167 55.6274 29.4014 55.979C30.386 56.3307 31.1776 56.7875 31.7754 57.3501C32.3732 57.9128 32.6719 58.6867 32.6719 59.6714C32.6719 60.867 32.1799 61.8167 31.1953 62.52C30.2108 63.2233 28.8919 63.5746 27.2393 63.5747C25.4106 63.5747 23.8275 63.1531 22.4912 62.3091C21.1901 61.4299 20.2053 60.3221 19.5371 58.9858L19.2793 59.2036V51.7769ZM12.7383 55.979V56.1899C12.7383 57.3504 12.4396 58.388 11.8418 59.3022C11.2792 60.1813 10.5051 60.8841 9.52051 61.4116C8.57103 61.9039 7.51595 62.1509 6.35547 62.1509C5.05437 62.1509 4.0168 61.8512 3.24316 61.2534C2.4698 60.6557 2.08308 59.8648 2.08301 58.8804C2.08301 58.4232 2.17085 58.0182 2.34668 57.6665C2.5225 57.2799 2.78617 56.9634 3.1377 56.7173C3.52452 56.4008 3.98228 56.2075 4.50977 56.1372C5.07227 56.0318 5.63476 55.979 6.19727 55.979H12.7383ZM26.7109 44.0581C28.0823 44.0581 29.3308 44.3393 30.4561 44.9019C31.6165 45.4293 32.5486 46.3087 33.252 47.5396L35.9805 45.5181V55.3354C35.4389 54.5138 34.7407 53.8485 33.8848 53.3413C32.9355 52.7788 31.8984 52.3218 30.7734 51.9702C29.6483 51.6186 28.5402 51.3199 27.4502 51.0737C26.2546 50.7924 25.2346 50.4927 24.3906 50.1763C23.5818 49.8598 22.9659 49.4733 22.5439 49.0161C22.122 48.559 21.9111 47.9606 21.9111 47.2222C21.9113 46.2379 22.3683 45.4644 23.2822 44.9019C24.1965 44.3393 25.3396 44.0582 26.7109 44.0581ZM7.35742 45.9038C9.00995 45.9038 10.3113 46.2906 11.2607 47.064C12.2453 47.8024 12.7382 48.9455 12.7383 50.4927V51.1265H5.24805C4.01728 51.1265 2.85671 51.2319 1.7666 51.4429C1.24379 51.5474 0.742366 51.6903 0.262695 51.8726C0.134871 50.7623 0.0470161 49.6402 0 48.5073C0.940174 47.768 1.98498 47.1798 3.1377 46.7476C4.57937 46.185 5.98607 45.9039 7.35742 45.9038Z" fill="url(#afLogoGradient)"/><defs><linearGradient id="afLogoGradient" x1="12.16" y1="21.9856" x2="89.3054" y2="92.5374" gradientUnits="userSpaceOnUse"><stop offset="0.5" stop-color="#FFFFFF"/><stop offset="1" stop-color="#67FCF1"/></linearGradient></defs></svg>Alex S. Moy &mdash; AI Alignment Report</a>
+    <ul class="nav-links">
+      <li><a href="#announcements">Announcements</a></li>
+      <li><a href="#analysis">Analysis</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#sources">Sources</a></li>
+      <li><a class="nav-back" href="/alignment-foundry/reports/">&larr; All reports</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-backdrop"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="ey-line"></div>
+      <span class="ey-text">Microsoft Build 2026 &nbsp;&middot;&nbsp; Fort Mason, San Francisco &nbsp;&middot;&nbsp; June 2&ndash;3, 2026</span>
+    </div>
+    <h1>What work are you ready to <span class="aq">delegate?</span></h1>
+    <p class="hero-sub">Microsoft just declared the operating environment for the age of agents &mdash; Windows, Azure, GitHub, and Microsoft 365, unified so a company can safely assign real work to AI. The question is no longer whether to use AI. It&rsquo;s what you&rsquo;re ready to delegate, and how you govern that delegation.</p>
+    <div class="hero-meta">
+      <div class="hm-item"><div class="hm-label">Based on</div><div class="hm-value aq">25+ announcements</div></div>
+      <div class="hm-item"><div class="hm-label">Primary focus</div><div class="hm-value">The Agent-First Platform</div></div>
+      <div class="hm-item"><div class="hm-label">Published</div><div class="hm-value">June 4, 2026</div></div>
+      <div class="hm-item"><div class="hm-label">Author</div><div class="hm-value">Alex S. Moy</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO / THESIS -->
+<section class="intro-sec" id="thesis">
+  <div class="inner">
+    <div class="s-eye"><div class="ln"></div><span class="lb">The moment we&rsquo;re in</span></div>
+    <h2 class="s-head">AI moved from a thing you ask <span class="aq">to a thing you assign.</span></h2>
+    <p class="s-intro">When Satya Nadella walked onto the stage at Fort Mason on June 2, he didn&rsquo;t lead with a demo. He led with a thesis: the new developer stack is not just tools and APIs &mdash; it&rsquo;s a full environment where AI agents can do real work. That framing is the difference between AI as a productivity feature and AI as a governed workforce layer. AI should be a tool, not a takeover &mdash; and at this scale, governance is what makes that true.</p>
+    <div class="three-col fu">
+      <div class="ic">
+        <div class="ic-num">Context 01</div>
+        <h3>From &ldquo;thing you ask&rdquo; to &ldquo;thing you assign&rdquo;</h3>
+        <p>Most AI tools today wait for a prompt. Microsoft&rsquo;s new posture is always-on: agents that run in the background, understand how work gets done across apps, and take action without being prompted each time. The interaction model has changed.</p>
+      </div>
+      <div class="ic">
+        <div class="ic-num">Context 02</div>
+        <h3>Governance ships in the same box</h3>
+        <p>Every agent announcement carried a governance layer &mdash; Entra identity for Scout, policy rules for Frontier Tuning, sandboxed execution for Hosted Agents, managed Cloud PCs for Windows 365 for Agents. Microsoft knows IT won&rsquo;t allow agents into production without audit trails and attributable identity.</p>
+      </div>
+      <div class="ic">
+        <div class="ic-num">Context 03</div>
+        <h3>The governed path made as fast as the ungoverned one</h3>
+        <p>Rayfin, the GitHub Copilot App, and Microsoft Foundry collapse the distance from prototype to a production system running under enterprise governance. Shadow AI is the immediate risk; Microsoft&rsquo;s answer is to make the compliant path the faster path.</p>
+      </div>
+    </div>
+    <div class="pq fu">
+      <p>&ldquo;Microsoft is trying to make Windows, Azure, GitHub, and Microsoft 365 the operating environment for agents.&rdquo;</p>
+      <cite>The Neuron &mdash; Microsoft Build 2026 Full Recap &nbsp;&sup5;</cite>
+    </div>
+    <div class="num-row fu">
+      <div class="nc"><div class="nb">7</div><div class="nl">in-house MAI models unveiled</div></div>
+      <div class="nc"><div class="nb">35B</div><div class="nl">active params, MAI-Thinking-1</div></div>
+      <div class="nc"><div class="nb">30%</div><div class="nl">more tokens per dollar, Maia 200</div></div>
+      <div class="nc"><div class="nb">1,000&times;</div><div class="nl">more reliable qubits, Majorana 2</div></div>
+      <div class="nc"><div class="nb">50%</div><div class="nl">Cobalt 200 performance gain</div></div>
+      <div class="nc"><div class="nb">2029</div><div class="nl">quantum commercial target</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ANNOUNCEMENTS -->
+<section class="ann-sec" id="announcements">
+  <div class="inner">
+    <div class="s-eye"><div class="ln"></div><span class="lb">Key announcements</span></div>
+    <h2 class="s-head">25+ announcements. <span class="aq">Here&rsquo;s what matters most.</span></h2>
+    <p class="s-intro">More than 25 distinct products and updates, all pointing the same direction: making agents something a company can safely assign work to. Select any card to read the full detail.</p>
+    <div class="ann-grid fu">
+
+      <button class="ann-card" style="--card-accent:#67FCF1" onclick="openModal('mai')">
+        <div class="ann-icon">&#129504;</div>
+        <div class="ann-tag">Models &amp; Intelligence</div>
+        <div class="ann-title">The MAI Model Family</div>
+        <div class="ann-desc">Microsoft&rsquo;s in-house lineup: MAI-Thinking-1, MAI-Code-1-Flash, MAI-Image-2.5, and more &mdash; built without distillation from third-party models.</div>
+        <div class="ann-more">Read more &rarr;</div>
+      </button>
+
+      <button class="ann-card" style="--card-accent:#96E5AC" onclick="openModal('scout')">
+        <div class="ann-icon">&#129302;</div>
+        <div class="ann-tag">Agentic AI</div>
+        <div class="ann-title">Microsoft Scout</div>
+        <div class="ann-desc">The first &ldquo;Autopilot&rdquo; agent. Always-on across Teams, Outlook, and SharePoint &mdash; each running under its own governed Entra identity.</div>
+        <div class="ann-more">Read more &rarr;</div>
+      </button>
+
+      <button class="ann-card" style="--card-accent:#14786C" onclick="openModal('solara')">
+        <div class="ann-icon">&#128223;</div>
+        <div class="ann-tag">Hardware Platform</div>
+        <div class="ann-title">Project Solara</div>
+        <div class="ann-desc">A chip-to-cloud platform for agent-first devices: a desk hub and a wearable AI badge for frontline workers. Pilots with Best Buy, CVS Health, Target.</div>
+        <div class="ann-more">Read more &rarr;</div>
+      </button>
+
+      <button class="ann-card" style="--card-accent:#67FCF1" onclick="openModal('github')">
+        <div class="ann-icon">&#128187;</div>
+        <div class="ann-tag">Developer Tools</div>
+        <div class="ann-title">GitHub Copilot App</div>
+        <div class="ann-desc">A native desktop app for agentic development. Parallel agent sessions, GitHub Issues context, pause-and-resume workflows. Now in preview.</div>
+        <div class="ann-more">Read more &rarr;</div>
+      </button>
+
+      <button class="ann-card" style="--card-accent:#96E5AC" onclick="openModal('quantum')">
+        <div class="ann-icon">&#9883;</div>
+        <div class="ann-tag">Quantum Computing</div>
+        <div class="ann-title">Majorana 2</div>
+        <div class="ann-desc">Qubits 1,000&times; more reliable than gen 1. Mean qubit lifetime of 20 seconds. Microsoft targeting commercial relevance by 2029.</div>
+        <div class="ann-more">Read more &rarr;</div>
+      </button>
+
+      <button class="ann-card" style="--card-accent:#14786C" onclick="openModal('frontier')">
+        <div class="ann-icon">&#127919;</div>
+        <div class="ann-tag">Enterprise AI</div>
+        <div class="ann-title">Frontier Tuning</div>
+        <div class="ann-desc">Train domain-specific models inside your own tenant using real workflow data. You own the model and the learning loop. Open to early partners.</div>
+        <div class="ann-more">Read more &rarr;</div>
+      </button>
+
+      <button class="ann-card" style="--card-accent:#67FCF1" onclick="openModal('rayfin')">
+        <div class="ann-icon">&#127959;</div>
+        <div class="ann-tag">Developer Infrastructure</div>
+        <div class="ann-title">Project Rayfin</div>
+        <div class="ann-desc">Open-source SDK and CLI that generates a full governed enterprise backend from a natural-language description. Ships to Microsoft Fabric in one command.</div>
+        <div class="ann-more">Read more &rarr;</div>
+      </button>
+
+      <button class="ann-card" style="--card-accent:#96E5AC" onclick="openModal('foundry')">
+        <div class="ann-icon">&#128295;</div>
+        <div class="ann-tag">Platform</div>
+        <div class="ann-title">Microsoft Foundry + MAF v1.0</div>
+        <div class="ann-desc">Microsoft Agent Framework hits GA. Sub-100ms cold starts. Third-party SDKs &mdash; including the Claude Agent SDK &mdash; plug in as named participants.</div>
+        <div class="ann-more">Read more &rarr;</div>
+      </button>
+
+      <button class="ann-card" style="--card-accent:#14786C" onclick="openModal('infra')">
+        <div class="ann-icon">&#128421;</div>
+        <div class="ann-tag">Cloud Infrastructure</div>
+        <div class="ann-title">Maia 200 + Cobalt 200</div>
+        <div class="ann-desc">In-house AI accelerator delivering 30% more tokens per dollar, live in Azure. Cobalt 200 VMs add 50% performance for agentic workloads.</div>
+        <div class="ann-more">Read more &rarr;</div>
+      </button>
+
+      <button class="ann-card" style="--card-accent:#67FCF1" onclick="openModal('discovery')">
+        <div class="ann-icon">&#128300;</div>
+        <div class="ann-tag">Scientific AI</div>
+        <div class="ann-title">Microsoft Discovery + Mayo Clinic</div>
+        <div class="ann-desc">Agentic R&amp;D platform reaches GA. A co-developed frontier healthcare model with Mayo Clinic combines clinical expertise and de-identified patient data.</div>
+        <div class="ann-more">Read more &rarr;</div>
+      </button>
+
+      <button class="ann-card" style="--card-accent:#96E5AC" onclick="openModal('iq')">
+        <div class="ann-icon">&#127760;</div>
+        <div class="ann-tag">Data &amp; Grounding</div>
+        <div class="ann-title">IQ Branding + HorizonDB</div>
+        <div class="ann-desc">Work IQ, Web IQ, and Fabric IQ unify Microsoft&rsquo;s context layer. Azure HorizonDB brings agentic-native PostgreSQL with 3&times; faster transactions.</div>
+        <div class="ann-more">Read more &rarr;</div>
+      </button>
+
+      <button class="ann-card" style="--card-accent:#14786C" onclick="openModal('security')">
+        <div class="ann-icon">&#128737;</div>
+        <div class="ann-tag">Security</div>
+        <div class="ann-title">MDASH + Windows Agent Security</div>
+        <div class="ann-desc">Multi-model agentic security topping industry benchmarks. The MXC framework provides Windows agent containment. Windows 365 for Agents now GA.</div>
+        <div class="ann-more">Read more &rarr;</div>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<!-- BIG STATEMENT -->
+<div class="big">
+  <p>The question is no longer whether to use AI. It&rsquo;s what work you&rsquo;re ready to delegate to agents &mdash; and how you govern that delegation.</p>
+</div>
+
+<!-- ANALYSIS -->
+<section class="an-sec" id="analysis">
+  <div class="inner">
+    <div class="s-eye"><div class="ln"></div><span class="lb">Analysis</span></div>
+    <h2 class="s-head">Five things every enterprise <span class="aq">leader needs to understand.</span></h2>
+    <p class="s-intro">Strip away the product names and Build 2026 makes five strategic arguments. Each one is a leadership decision before it is a technical configuration.</p>
+    <div class="tab-strip" role="tablist">
+      <button class="tb active" onclick="switchTab(event,'t1')" role="tab">Agent OS</button>
+      <button class="tb" onclick="switchTab(event,'t2')" role="tab">Identity &amp; Governance</button>
+      <button class="tb" onclick="switchTab(event,'t3')" role="tab">Prod Gap</button>
+      <button class="tb" onclick="switchTab(event,'t4')" role="tab">Model Independence</button>
+      <button class="tb" onclick="switchTab(event,'t5')" role="tab">Quantum</button>
+    </div>
+
+    <div class="an-panel active" id="t1">
+      <h3>The agent operating system is real</h3>
+      <p>Microsoft is not positioning agents as add-ons. It is positioning Windows, Azure, GitHub, and Microsoft 365 as the collective operating system for agents. Every major platform announcement &mdash; from MAF v1.0 to Windows 365 for Agents to OpenClaw on Windows &mdash; serves one goal: making it so agents can be assigned enterprise work, with governance, auditability, and policy compliance built in from the start.</p>
+      <p>The question for enterprise IT is not whether to engage with this platform but when, and at what depth. Organizations that wait until agents are &ldquo;mature enough&rdquo; will find themselves years behind competitors who started building internal governance frameworks now.</p>
+    </div>
+    <div class="an-panel" id="t2">
+      <h3>Identity and governance come first</h3>
+      <p>Every agent announcement at Build included a governance layer. Entra identity for Scout. Policy rules for Frontier Tuning. Sandboxed execution for Hosted Agents. Managed Cloud PCs for Windows 365 for Agents. This pattern is deliberate: Microsoft knows enterprise IT will not allow agents into production workflows without audit trails, policy controls, and attributable identity.</p>
+      <p>That makes governance both a selling point and a precondition. If your organization has not yet defined who can deploy agents, what data they can access, and how decisions are logged, that work needs to happen before you can take advantage of what Microsoft built here.</p>
+    </div>
+    <div class="an-panel" id="t3">
+      <h3>The prototype-to-production gap is narrowing</h3>
+      <p>Rayfin, the GitHub Copilot App, and Microsoft Foundry together shrink the distance between an AI-generated prototype and a production system running under enterprise governance. A developer can go from natural-language idea to a deployed backend on Microsoft Fabric &mdash; with auth, storage, and access policies &mdash; in a single CLI command.</p>
+      <p>This matters for risk management. Developers will move faster than IT policy can follow. Shadow AI &mdash; teams building on external platforms that store data outside enterprise controls &mdash; is the most immediate governance risk. Microsoft&rsquo;s answer is to make the governed path as fast as the ungoverned one.</p>
+    </div>
+    <div class="an-panel" id="t4">
+      <h3>Model independence is Microsoft&rsquo;s new leverage</h3>
+      <p>The MAI model family and the Maia 200 chip signal that Microsoft is building its own AI capability independent of OpenAI. That doesn&rsquo;t end the OpenAI relationship &mdash; it means Microsoft is no longer entirely dependent on it. Nadella put it plainly: &ldquo;Because we can vertically integrate doesn&rsquo;t mean we just only vertically integrate.&rdquo;</p>
+      <p>For enterprise buyers on Azure, this is structurally positive. More competition between models means better price-performance, more choice, and reduced lock-in risk. Distributing the MAI models via Fireworks AI, Baseten, and Open Router also signals Microsoft is competing on quality and cost, not just platform exclusivity.</p>
+    </div>
+    <div class="an-panel" id="t5">
+      <h3>Quantum is a 2029 problem &mdash; start watching now</h3>
+      <p>Majorana 2 is not a product you deploy this year. But the progress announced at Build &mdash; qubits 1,000 times more reliable than the previous generation, mean coherence times of 20 seconds &mdash; is the kind of foundational leap that shortens the commercialization timeline from &ldquo;theoretical&rdquo; to &ldquo;planning horizon.&rdquo;</p>
+      <p>Organizations in regulated industries with computationally intensive problems &mdash; cryptography, drug discovery, supply chain optimization, portfolio modeling &mdash; should start building internal literacy around quantum readiness now. The 2029 target is aggressive, but if it&rsquo;s even approximately right, the procurement and integration work needs to begin well before the technology is commercially available.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="tl-sec" id="timeline">
+  <div class="inner">
+    <div class="s-eye"><div class="ln"></div><span class="lb">Keynote timeline</span></div>
+    <h2 class="s-head">How the day unfolded &mdash; from edge to cloud to quantum</h2>
+    <p class="s-intro">Two days, more than 25 announcements, one throughline. These are the inflection points of the Build 2026 keynote, in the order Microsoft chose to tell the story.</p>
+    <div class="tl">
+      <div class="ti"><div class="td"></div><div class="t-date">9:30 AM PT &mdash; Opening Keynote</div><div class="t-title">Satya Nadella sets the frame</div><div class="t-desc">The new developer stack is an environment where AI agents can do real work. Every announcement that follows flows from this thesis.</div></div>
+      <div class="ti"><div class="td"></div><div class="t-date">Windows First</div><div class="t-title">Surface RTX Spark Dev Box + Windows AI APIs</div><div class="t-desc">An NVIDIA-powered mini-PC with 128GB unified memory for local AI workloads. OpenClaw on Windows enters preview. Windows 365 for Agents goes GA.</div></div>
+      <div class="ti"><div class="td"></div><div class="t-date">Infrastructure Block</div><div class="t-title">Maia 200, Cobalt 200, Azure HorizonDB</div><div class="t-desc">Custom silicon live in production. A new CPU class for agentic orchestration. PostgreSQL rebuilt for agentic applications.</div></div>
+      <div class="ti"><div class="td"></div><div class="t-date">NVIDIA Guest Appearance</div><div class="t-title">Jensen Huang joins from Computex</div><div class="t-desc">Live from Taipei, Jensen details RTX Spark and the unified NVIDIA-Microsoft stack. OpenShell on Windows via MXC is announced.</div></div>
+      <div class="ti"><div class="td"></div><div class="t-date">Project Solara</div><div class="t-title">Qualcomm&rsquo;s Cristiano Amon on stage</div><div class="t-desc">Two reference devices unveiled: a desk hub on MediaTek silicon and a wearable AI badge on Qualcomm hardware. AOSP-based OS, Azure-backed agent state.</div></div>
+      <div class="ti"><div class="td"></div><div class="t-date">Developer Platform</div><div class="t-title">GitHub Copilot App, Rayfin, Foundry MAF v1.0</div><div class="t-desc">An agentic desktop development experience in preview. An open-source backend generator. The Agent Framework reaches general availability.</div></div>
+      <div class="ti"><div class="td"></div><div class="t-date">Enterprise AI</div><div class="t-title">Scout, Frontier Tuning, Web IQ, Microsoft IQ</div><div class="t-desc">The first Autopilot agent. Domain-specific model training inside the enterprise tenant. Real-time web grounding for agents.</div></div>
+      <div class="ti"><div class="td"></div><div class="t-date">Closing Announcements</div><div class="t-title">MAI Models, Microsoft Discovery, Majorana 2</div><div class="t-desc">The full in-house model family revealed. The agentic R&amp;D platform reaches GA. A quantum chip with a 20-second qubit lifetime targeting 2029 commercial relevance.</div></div>
+      <div class="ti"><div class="td"></div><div class="t-date">Evening</div><div class="t-title">The Chainsmokers at Fort Mason</div><div class="t-desc">The Grammy-winning duo closed the conference with a live performance for attendees.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact-sec" id="impact">
+  <div class="inner">
+    <div class="s-eye"><div class="ln"></div><span class="lb">Enterprise impact</span></div>
+    <h2 class="s-head">What this means &mdash; <span class="aq">and when it matters.</span></h2>
+    <p class="s-intro">Announcements are signals; the work is sequencing them against your own readiness. Here&rsquo;s an honest map of what to act on now, what to plan for, and what to keep watching.</p>
+    <div class="impact-grid fu">
+      <div class="iq now">
+        <div class="iq-h">Act now &middot; 0&ndash;6 months</div>
+        <ul>
+          <li>Enroll in the Microsoft Frontier program for early Scout access</li>
+          <li>Audit your AI governance framework for agent identity and policy readiness</li>
+          <li>Evaluate the GitHub Copilot App preview for dev teams</li>
+          <li>Assess Rayfin as a shadow-AI risk-reduction path</li>
+        </ul>
+      </div>
+      <div class="iq soon">
+        <div class="iq-h">Plan soon &middot; 6&ndash;12 months</div>
+        <ul>
+          <li>Deploy Windows 365 for Agents for governed agent compute</li>
+          <li>Evaluate Frontier Tuning for domain-specific model programs</li>
+          <li>Migrate applicable workloads to Maia 200 / Cobalt 200 pricing</li>
+          <li>Pilot Project Solara for frontline worker use cases</li>
+        </ul>
+      </div>
+      <div class="iq mid">
+        <div class="iq-h">Monitor closely &middot; 12&ndash;24 months</div>
+        <ul>
+          <li>MAI-Thinking-1 general availability and pricing</li>
+          <li>Project Solara hardware reference-design ecosystem</li>
+          <li>Microsoft Discovery expansion to regulated industries</li>
+          <li>Mayo Clinic healthcare-model commercialization</li>
+        </ul>
+      </div>
+      <div class="iq long">
+        <div class="iq-h">Long range &middot; 2027&ndash;2029</div>
+        <ul>
+          <li>Majorana 2&rsquo;s path to commercially relevant quantum computing</li>
+          <li>Quantum readiness for cryptography and drug discovery</li>
+          <li>Agent-first device ecosystem maturation, post-Solara pilots</li>
+          <li>MAI model capability trajectory vs OpenAI / Anthropic</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>AI should be a tool, not a takeover.</h2>
+  <p>The organizations building durable AI advantage won&rsquo;t be the ones running the most agents. They&rsquo;ll be the ones with the clearest governance, the most aligned teams, and the frameworks to hold both accountable. Delegation without governance is just exposure at machine speed.</p>
+  <a class="cta-btn" href="#announcements">Review the announcements</a>
+</div>
+
+<!-- CITATIONS -->
+<section class="cite-sec" id="sources">
+  <div class="inner">
+    <div class="s-eye"><div class="ln"></div><span class="lb">Sources and references</span></div>
+    <h2 class="s-head">Where this comes from</h2>
+    <p class="s-intro">Every claim in this report is sourced from primary announcements, official company publications, and independent technology press. Figures are cited as reported. Click any source to read the original material.</p>
+    <div class="cg fu">
+      <a class="cc" href="https://news.microsoft.com/build-2026-live-blog" target="_blank" rel="noopener"><div class="cn">1</div><div class="cc-c"><div class="cc-t">Microsoft Build 2026 Official Live Blog</div><div class="cc-m">news.microsoft.com &middot; June 2, 2026</div></div><div class="cc-a">&rarr;</div></a>
+      <a class="cc" href="https://www.gizbot.com/features/microsoft-build-2026-highlights-the-biggest-announcements-you-need-to-know-126021.html" target="_blank" rel="noopener"><div class="cn">2</div><div class="cc-c"><div class="cc-t">Build 2026 Highlights: From MAI-Code-1 to Project Solara</div><div class="cc-m">Gizbot &middot; June 2026</div></div><div class="cc-a">&rarr;</div></a>
+      <a class="cc" href="https://www.panewslab.com/en/articles/019e8b42-434b-75bc-b75a-e84e401eae43" target="_blank" rel="noopener"><div class="cn">3</div><div class="cc-c"><div class="cc-t">Microsoft unveils seven self-developed models at Build 2026</div><div class="cc-m">PANews &middot; June 2026</div></div><div class="cc-a">&rarr;</div></a>
+      <a class="cc" href="https://www.tomsguide.com/news/live/microsoft-build-2026" target="_blank" rel="noopener"><div class="cn">4</div><div class="cc-c"><div class="cc-t">Biggest Microsoft Build 2026 announcements</div><div class="cc-m">Tom&rsquo;s Guide &middot; June 2026</div></div><div class="cc-a">&rarr;</div></a>
+      <a class="cc" href="https://www.theneuron.ai/explainer-articles/everything-microsoft-announced-at-microsoft-build-2026-explained/" target="_blank" rel="noopener"><div class="cn">5</div><div class="cc-c"><div class="cc-t">Everything Announced at Microsoft Build 2026, Explained</div><div class="cc-m">The Neuron &middot; June 2026</div></div><div class="cc-a">&rarr;</div></a>
+      <a class="cc" href="https://www.engadget.com/2185601/microsoft-build-2026-live-blog-copilot-windows-news/" target="_blank" rel="noopener"><div class="cn">6</div><div class="cc-c"><div class="cc-t">Microsoft Build 2026 Live Blog &mdash; Copilot, Windows news</div><div class="cc-m">Engadget &middot; June 2026</div></div><div class="cc-a">&rarr;</div></a>
+      <a class="cc" href="https://www.tomshardware.com/tech-industry/artificial-intelligence/microsoft-unveils-project-solara-ai" target="_blank" rel="noopener"><div class="cn">7</div><div class="cc-c"><div class="cc-t">Microsoft unveils Project Solara AI chip-to-cloud platform</div><div class="cc-m">Tom&rsquo;s Hardware &middot; June 2026</div></div><div class="cc-a">&rarr;</div></a>
+      <a class="cc" href="https://commandline.microsoft.com/project-solara-build-2026/" target="_blank" rel="noopener"><div class="cn">8</div><div class="cc-c"><div class="cc-t">Composing a new platform for agent-first devices</div><div class="cc-m">Microsoft Command Line &middot; June 2, 2026</div></div><div class="cc-a">&rarr;</div></a>
+      <a class="cc" href="https://blogs.windows.com/windowsdeveloper/2026/06/02/build-2026-furthering-windows-as-the-trusted-platform-for-development/" target="_blank" rel="noopener"><div class="cn">9</div><div class="cc-c"><div class="cc-t">Build 2026: Furthering Windows as the trusted platform for development</div><div class="cc-m">Windows Developer Blog &middot; June 2, 2026</div></div><div class="cc-a">&rarr;</div></a>
+      <a class="cc" href="https://www.techradar.com/pro/live/microsoft-build-2026-live-all-the-updates-as-they-happen" target="_blank" rel="noopener"><div class="cn">10</div><div class="cc-c"><div class="cc-t">Microsoft Build 2026 &mdash; all the news and updates as it happened</div><div class="cc-m">TechRadar &middot; June 2026</div></div><div class="cc-a">&rarr;</div></a>
+      <a class="cc" href="https://www.eweek.com/news/microsoft-build-2026-ai-agent-stack-neuron/" target="_blank" rel="noopener"><div class="cn">11</div><div class="cc-c"><div class="cc-t">Microsoft Build 2026: Everything Microsoft Announced</div><div class="cc-m">eWeek &middot; June 2026</div></div><div class="cc-a">&rarr;</div></a>
+      <a class="cc" href="https://sundayguardianlive.com/tech-news/microsoft-build-2026-how-to-watch-the-keynote-start-time-and-major-ai-announcements-expected-200284/" target="_blank" rel="noopener"><div class="cn">12</div><div class="cc-c"><div class="cc-t">Microsoft Build 2026: How to Watch &amp; Major AI Announcements Expected</div><div class="cc-m">Sunday Guardian Live &middot; June 2026</div></div><div class="cc-a">&rarr;</div></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fi">
+    <p>&copy; 2026 Alex S. Moy. All rights reserved.</p>
+    <p class="fb">Alex S. Moy &mdash; Architect of AI Alignment</p>
+    <p><a href="/alignment-foundry/reports/">&larr; All reports</a> &middot; Based on Microsoft Build 2026 &middot; Fort Mason, SF</p>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-header">
+      <div>
+        <div class="modal-tag" id="modal-tag"></div>
+        <div class="modal-title" id="modal-title"></div>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// ── MODALS ──
+const modalData = {
+  mai: {tag:'Models & Intelligence', title:'The MAI Model Family', body:`
+<p>For three years, Microsoft's AI story rested heavily on its OpenAI relationship. Build 2026 changed that narrative. Microsoft's AI Superintelligence team unveiled a full family of in-house models called MAI &mdash; built from scratch, without distillation from third-party frontier models. This is a strategic declaration of model independence.</p>
+<p><strong>MAI-Thinking-1</strong> is the flagship reasoning model. At 35 billion active parameters, it is mid-sized by frontier standards but optimized for high efficiency at low token cost &mdash; handling complex multi-step instructions, long-context reasoning, and code generation.</p>
+<p><strong>MAI-Code-1-Flash</strong> is purpose-built for GitHub Copilot and VS Code, already live in both products at launch.</p>
+<p><strong>MAI-Image-2.5</strong> is Microsoft's first model handling both text-to-image and image-to-image workflows. <strong>MAI-Transcribe-1.5</strong> offers state-of-the-art accuracy with streaming support coming. <strong>MAI-Voice-2</strong> now supports 10+ additional languages.</p>
+<p>These models are also available externally via Fireworks AI, Baseten, and Open Router &mdash; signaling Microsoft is competing on quality and cost, not just platform exclusivity.</p>
+<p><em>Source: Microsoft Build Live Blog</em></p>`},
+  scout: {tag:'Agentic AI', title:'Microsoft Scout &mdash; The Always-On Agent', body:`
+<p>Most AI tools today wait for a prompt. You open the app, type a question, get an answer. Scout changes that model entirely.</p>
+<p>Scout is Microsoft's first &ldquo;Autopilot&rdquo; agent. Autopilots are always-on &mdash; they run in the background with their own identity, understanding how work gets done across apps and systems, taking action without being prompted each time.</p>
+<p>Scout lives inside the tools where knowledge work already happens: Teams and Outlook for communication, OneDrive and SharePoint for files, plus device-local actions. It is powered by <strong>Work IQ</strong>, a context engine that learns the people, files, and patterns specific to how each user works.</p>
+<p>The trust architecture is critical: every Scout agent operates under its own governed Microsoft Entra identity &mdash; not a shared, anonymous service account. Every action is traceable. Administrators can set policy rules and monitor agent activity in real time.</p>
+<p>Built on open-source <strong>OpenClaw</strong> technology, Scout is available now to Frontier organizations through an experimental early release.</p>
+<p><em>Source: Microsoft Build Live Blog</em></p>`},
+  solara: {tag:'Hardware Platform', title:'Project Solara &mdash; Agent-First Devices', body:`
+<p>Traditional PCs are not always the right form factor for AI agents. A nurse on a hospital floor, a retail associate, a field technician &mdash; these workers need different interfaces.</p>
+<p>Project Solara is a chip-to-cloud platform for agent-first devices. Microsoft unveiled two reference hardware designs:</p>
+<p><strong>Desk Hub:</strong> Built on MediaTek IoT silicon. Includes a display, camera, UWB presence sensor for automatic login/lock, dual far-field microphones, and two USB-C ports. Connected to an external display, it doubles as a Windows 365 Cloud PC client.</p>
+<p><strong>Wearable AI Badge:</strong> Powered by Qualcomm hardware. Touchscreen, Hello for Business fingerprint sensor, high-SNR microphone array, side-facing camera, 5G, WiFi, Bluetooth, and GNSS. Targets frontline workers in healthcare, retail, and field operations.</p>
+<p>The OS is built on Android Open Source Project (AOSP), with Azure-hosted agent services and persistent cloud-based state. Qualcomm CEO Cristiano Amon joined Nadella on stage to discuss the implications for device form factors.</p>
+<p>Early pilots are planned with AccuWeather, Best Buy, CVS Health, Levi's, and Target.</p>
+<p><em>Sources: Tom's Hardware, Microsoft Command Line</em></p>`},
+  github: {tag:'Developer Tools', title:'GitHub Copilot App &mdash; Agentic Development', body:`
+<p>Previous versions of Copilot were sidebar experiences inside code editors. The new GitHub Copilot App is something different: a standalone native desktop application for agentic development workflows.</p>
+<p>You can start from existing GitHub Issues and Pull Requests, giving the agent context before a single line is written. Under the hood, it uses <strong>git worktrees</strong> so each session has its own branches, files, conversations, and task state &mdash; keeping work separated even when managing multiple tasks simultaneously.</p>
+<p>Sessions can be paused and resumed. Multiple agent sessions can run in parallel. The app handles execution while developers retain control over review, CI validation, and merge decisions.</p>
+<p>The app is available in preview now. It represents GitHub evolving from a version-control platform into a full agentic development environment.</p>
+<p>Also announced: <strong>Aion Instruct</strong> and <strong>Aion Plan</strong>, new models for instruction-following and planning tasks in agentic workflows.</p>
+<p><em>Source: Microsoft Build Live Blog</em></p>`},
+  quantum: {tag:'Quantum Computing', title:'Majorana 2 &mdash; The Quantum Leap', body:`
+<p>In a conference packed with near-term products, Majorana 2 stood out as Microsoft's long-horizon bet on a fundamentally different kind of computing.</p>
+<p>The Majorana 1 chip (2025) demonstrated topological qubits &mdash; a new state of matter that previously existed only in theory. Majorana 2 is the engineering realization of that science. Qubits are now <strong>1,000 times more reliable</strong> than the previous generation.</p>
+<p>The coherence time difference is staggering. Most quantum approaches measure qubit lifetime in microseconds. Majorana 2 offers a mean qubit lifetime of <strong>20 seconds</strong>, with instances lasting as long as one minute. That is not an incremental improvement &mdash; it is the kind of gap that opens entirely new applications.</p>
+<p>The quantum team used recent advances in agentic AI to accelerate improvements to the topological qubits themselves &mdash; an interesting example of AI-assisted hardware development.</p>
+<p>Microsoft is targeting a commercially relevant quantum computer by <strong>2029</strong>, capable of solving intractable problems in healthcare, energy, agriculture, and other industries.</p>
+<p><em>Source: Microsoft Build Live Blog</em></p>`},
+  frontier: {tag:'Enterprise AI', title:'Frontier Tuning &mdash; Your Model, Your Data', body:`
+<p>Foundation models are generalists. They do not know your APIs, your terminology, your internal processes, or your house style. Frontier Tuning is designed to close that gap.</p>
+<p>It lets enterprises train domain-specific models inside their own tenant using real workflow data &mdash; task completions, decision reviews, validated outcomes. The enterprise owns both the model and the learning loop.</p>
+<p>Frontier Tuning runs on a single platform inside your own tenant and ships with enterprise reinforcement learning (RL) environments. Your AI learns directly from how your people actually work, not from a generic training corpus.</p>
+<p>The result: models custom-fit to your domain, workflows, policies, and house style &mdash; yielding higher-quality results faster and at lower cost than continuously prompting a general-purpose frontier model.</p>
+<p>Frontier Tuning is currently open to select early partners.</p>
+<p><em>Source: Microsoft Build Live Blog</em></p>`},
+  rayfin: {tag:'Developer Infrastructure', title:'Project Rayfin &mdash; From Demo to Production', body:`
+<p>Coding agents can generate an app in seconds. Getting it to production is still the slow part &mdash; wiring up the backend plumbing before a single user touches it. Rayfin collapses that gap.</p>
+<p>Rayfin is an open-source SDK and CLI. Describe the app you want &mdash; in code or in natural language to a coding agent &mdash; and Rayfin generates a typed, governed backend: database, authentication, storage, and access policies. One CLI command ships it to Microsoft Fabric, where it runs as a managed service and inherits the tenant's existing security, governance, and compliance controls. App data lands in OneLake automatically.</p>
+<p>The Replit partnership is notable: build in Replit, deploy with Rayfin, and the app, data, and services stay in your own Fabric tenant. This is a direct answer to the shadow-AI risk that comes when developers use external tools storing data outside enterprise controls.</p>
+<p>Rayfin is open-source and currently in preview.</p>
+<p><em>Source: Microsoft Build Live Blog</em></p>`},
+  foundry: {tag:'Platform', title:'Microsoft Foundry + MAF v1.0', body:`
+<p>The hard part of building agents is not the prototype &mdash; it is everything after. Isolation, identity, tools that actually work, a path from production back to a better version.</p>
+<p><strong>Microsoft Agent Framework (MAF) v1.0</strong> is now generally available. This is the production-ready harness for enterprise agents: skills, context, memory, and middleware are first-class concepts. Third-party agents built on the GitHub Copilot SDK or <strong>Claude Agent SDK</strong> can plug into a MAF workflow as named participants with deterministic orchestration.</p>
+<p><strong>Hosted Agents</strong> in Foundry Agent Service will reach GA in coming weeks: per-session sandboxing for untrusted code, sub-100ms cold starts, and zero idle cost in a framework-agnostic runtime.</p>
+<p>New Foundry toolboxes (preview) unify access to web and file search, MCP (Model Context Protocol), OpenAPI specs, and the A2A (Agent-to-Agent) protocol &mdash; signals that Microsoft is building toward open interoperability standards across the agent ecosystem.</p>
+<p><em>Source: Microsoft Build Live Blog</em></p>`},
+  infra: {tag:'Cloud Infrastructure', title:'Maia 200 + Cobalt 200 &mdash; Custom Silicon', body:`
+<p>For enterprise AI at scale, infrastructure economics matter enormously. Microsoft made two major moves on this front at Build 2026.</p>
+<p><strong>Maia 200</strong> is Microsoft's in-house AI accelerator chip, now live in Azure data centers in Arizona with international rollout planned. It delivers <strong>30% more tokens per dollar</strong> than the leading GPU on the market and is co-designed with the MAI model family for a 1.4x efficiency improvement through joint hardware-software optimization.</p>
+<p>Nadella was explicit that Microsoft will continue buying from NVIDIA and AMD. &ldquo;Because we can vertically integrate doesn't mean we just only vertically integrate.&rdquo; The Maia 200 is a cost optimization layer, not a replacement strategy.</p>
+<p><strong>Cobalt 200 VMs</strong> are Microsoft's next-generation ARM-based CPU platform, delivering <strong>50% performance improvement</strong> for cloud-native and agent workloads. Agents create heavy CPU demand &mdash; tool calls, data retrieval, orchestration steps &mdash; that GPU-focused discussions tend to overlook.</p>
+<p>Both chips will power Microsoft 365 Copilot workloads, with the goal of delivering better price-performance to enterprise customers on Azure.</p>
+<p><em>Sources: PANews, Tom's Guide</em></p>`},
+  discovery: {tag:'Scientific AI', title:'Microsoft Discovery + Mayo Clinic Partnership', body:`
+<p><strong>Microsoft Discovery</strong> is now generally available. At its core is the Discovery Engine, which deploys specialized AI agents to mimic the scientific method: generating hypotheses, designing experiments, and validating theories in a continuous loop &mdash; with human oversight and enterprise governance built in.</p>
+<p>The platform is especially valuable for regulated industries. Food production companies and energy providers can use agentic discovery for R&amp;D workflows that previously required large specialist teams.</p>
+<p>A new early preview of the Microsoft Discovery app brings these capabilities to individual researchers &mdash; students, academic labs, public research institutions &mdash; requiring only a GitHub Copilot account to get started.</p>
+<p>The <strong>Mayo Clinic partnership</strong> was the most striking announcement in this space. Microsoft and Mayo Clinic are co-developing a frontier AI model for healthcare, combining Mayo Clinic's clinical expertise, de-identified patient data, and longitudinal outcome insights with Microsoft's foundational AI capabilities.</p>
+<p>This is not a generic healthcare AI announcement. It is a specific, domain-specific model built from decades of clinical knowledge &mdash; the kind of asset that cannot be replicated by fine-tuning a general-purpose model.</p>
+<p><em>Sources: Microsoft Build Live Blog, TechRadar</em></p>`},
+  iq: {tag:'Data & Grounding', title:'IQ Branding + Azure HorizonDB', body:`
+<p>Microsoft unified its context and intelligence services under a new <strong>IQ</strong> branding umbrella. <strong>Work IQ</strong> powers personal agent context (used in Scout). <strong>Web IQ</strong> provides real-time web grounding for agents. <strong>Fabric IQ</strong> handles enterprise data intelligence and analytics.</p>
+<p><strong>Web IQ</strong> addresses one of the core reliability challenges in enterprise AI deployment: foundation models have knowledge cutoffs. Web IQ feeds agents with fresh, current web content as a grounding layer &mdash; reducing hallucination risks in time-sensitive business contexts.</p>
+<p><strong>Microsoft IQ</strong> enables collective intelligence across organizations &mdash; connecting individual agent context with organizational knowledge patterns.</p>
+<p><strong>Azure HorizonDB</strong> is a fully managed PostgreSQL service purpose-built for agentic applications. Agents query databases differently from traditional applications: they perform semantic searches, retrieve context, and need ultra-low latency for real-time orchestration decisions. HorizonDB adds ultra-low latency, read scale-out, up to 3x faster transaction and search performance, advanced vector indexing, semantic search, and in-database model access &mdash; with integrations into Microsoft Fabric and Foundry.</p>
+<p><em>Sources: Engadget, The Neuron</em></p>`},
+  security: {tag:'Security', title:'MDASH + Windows Agent Security', body:`
+<p>In an agentic world, security can no longer work at the speed of human review. <strong>MDASH</strong> &mdash; Microsoft's multi-model agentic security system, announced the week before Build &mdash; received keynote time as a centerpiece of the agent trust story. It topped leading industry benchmarks at launch and uses multiple AI models to detect, investigate, and respond to threats in near real-time.</p>
+<p>The <strong>MXC</strong> (Microsoft Extended Compute) framework underpins the Windows agent containment model. Agent 365 SDK integration with MXC delivers Defender, Entra, Intune, and Purview protections for local agents, constraining them to prevent enterprise risk. Available in preview in July.</p>
+<p><strong>OpenClaw</strong> runs natively on Windows via MXC with its own companion app, letting users set up claws or connect to existing ones. NVIDIA is bringing <strong>OpenShell</strong> to Windows via MXC, providing developers with an easy-to-deploy package for autonomous, always-on agents running safely.</p>
+<p><strong>Windows 365 for Agents</strong> is now generally available, providing computer-using agents with secure, managed Cloud PCs to execute enterprise workflows &mdash; giving agents dedicated, policy-governed compute environments.</p>
+<p><em>Source: Windows Developer Blog</em></p>`}
+};
+let lastFocus=null;
+function openModal(id){
+  const d=modalData[id]; if(!d) return;
+  lastFocus=document.activeElement;
+  document.getElementById('modal-tag').textContent=d.tag;
+  document.getElementById('modal-title').textContent=d.title;
+  document.getElementById('modal-body').innerHTML=d.body;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  document.querySelector('.modal-close').focus();
+}
+function closeModalDirect(){
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+  if(lastFocus)lastFocus.focus();
+}
+function closeModal(e){ if(e.target===document.getElementById('modal-overlay')) closeModalDirect(); }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModalDirect(); });
+
+// ── TABS ──
+function switchTab(event,id){
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.an-panel').forEach(p=>p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+// ── SCROLL REVEAL ──
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.1});
+document.querySelectorAll('.fu,.ti').forEach((el,i)=>{
+  if(el.classList.contains('ti'))el.style.transitionDelay=(i*0.06)+'s';
+  io.observe(el);
+});
+
+// ── ACTIVE NAV ──
+const navAs=document.querySelectorAll('.nav-links a[href^="#"]');
+const secs=[...document.querySelectorAll('section[id]')];
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY+80;let cur='';
+  secs.forEach(s=>{if(s.offsetTop<=y)cur=s.id;});
+  navAs.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+},{passive:true});
+</script>
+</body>
+</html>
