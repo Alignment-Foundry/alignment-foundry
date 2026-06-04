@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+eyebrow: Behind the Alignment Foundry
 subtitle: Lead with faith. Empower people. Transform through alignment.
 permalink: /about/
 ---

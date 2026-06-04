@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Reports
+eyebrow: Executive Briefings for AI Leaders
 subtitle: One-page interactive briefings on major industry conferences and enterprise AI trend reports.
 permalink: /reports/
 ---
