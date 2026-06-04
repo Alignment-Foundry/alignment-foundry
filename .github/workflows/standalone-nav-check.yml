@@ -1,0 +1,28 @@
+name: Standalone page nav policy
+
+# Enforces the report/resource nav + footer standard from CLAUDE.md so new
+# one-page briefings always ship with the home link and "All reports/resources"
+# back links. Runs only when a standalone page (or the check itself) changes.
+
+on:
+  pull_request:
+    paths:
+      - "docs/reports/**"
+      - "docs/resources/**"
+      - ".github/scripts/check_standalone_nav.py"
+      - ".github/workflows/standalone-nav-check.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/reports/**"
+      - "docs/resources/**"
+      - ".github/scripts/check_standalone_nav.py"
+      - ".github/workflows/standalone-nav-check.yml"
+
+jobs:
+  nav-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check standalone report/resource nav + footer standard
+        run: python3 .github/scripts/check_standalone_nav.py

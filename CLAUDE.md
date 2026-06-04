@@ -76,6 +76,13 @@ Required supporting CSS (add once per standalone file, next to the existing
 footer a{color:var(--aquamarine);text-decoration:none;font-weight:700}
 ```
 
+> **Enforced in CI.** `.github/workflows/standalone-nav-check.yml` runs
+> `.github/scripts/check_standalone_nav.py` on every PR that touches
+> `docs/reports/**` or `docs/resources/**`. It fails the build if a top-level
+> `reports/*.html` or `resources/*.html` page is missing the home link, the
+> nav back link, the footer back link, or the supporting CSS. Run it locally
+> with `python3 .github/scripts/check_standalone_nav.py` before pushing.
+
 ## Jekyll page conventions
 
 - Section headings (`##`) automatically render with an accent rule — no markup
