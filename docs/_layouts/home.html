@@ -2,9 +2,20 @@
 layout: default
 ---
 <section class="hero">
+  <div class="hero-backdrop"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-grid"></div>
   <div class="container">
+    <div class="hero-eyebrow">
+      <span class="ey-line"></span>
+      <span class="ey-text">{{ page.eyebrow | default: 'Enterprise AI Alignment' }}</span>
+    </div>
     <h1>{{ page.headline | default: site.title }}</h1>
     {% if page.lede %}<p class="lede">{{ page.lede }}</p>{% endif %}
+    <div class="hero-actions">
+      <a class="btn" href="{{ '/reports/' | relative_url }}">Read the briefings &rarr;</a>
+      <a class="btn btn--ghost" href="{{ '/about/' | relative_url }}">About the foundry</a>
+    </div>
   </div>
 </section>
 
