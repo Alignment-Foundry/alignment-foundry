@@ -1,5 +1,5 @@
 # Process Design Workspace
-## Interpretable Context Methodology — Agent Context File
+## Interpretable Context Methodology, Agent Context File
 
 **Role**: Process decomposition and automation design agent
 **Workspace type**: Sequential, human-reviewed, artifact-producing
@@ -9,7 +9,7 @@
 
 ## What this workspace does
 
-Takes any work process — from a rough description to a detailed brief — and produces a
+Takes any work process, from a rough description to a detailed brief, and produces a
 complete set of process engineering artifacts: SIPOC, hierarchical decomposition,
 automation scorecard, PACE resilience design, RACI matrix, flow diagram, and implementation
 roadmap.
@@ -22,7 +22,7 @@ open, read, edit, and approve before the next stage runs. Human edits are author
 ## How to orient yourself
 
 1. Check `_state.md` for the active process name and current stage.
-2. Read the STAGE.md for the current stage — that file defines your entire job.
+2. Read the STAGE.md for the current stage; that file defines your entire job.
 3. Load only the skill listed for that stage. Do not pre-load other skills.
 4. Read input files from the previous stage's `output/` folder.
 5. Produce output to the current stage's `output/` folder.
@@ -43,7 +43,7 @@ open, read, edit, and approve before the next stage runs. Human edits are author
 
 ---
 
-## Skills — load on demand only
+## Skills, load on demand only
 
 | Skill | File | Load when entering |
 |-------|------|--------------------|
@@ -59,14 +59,14 @@ forward into the next stage unless explicitly needed.
 
 ## Reference files (load only when cited by a STAGE.md)
 
-- `_core/patterns/automation-patterns.md` — technology design patterns per category
-- `_core/patterns/pace-examples.md` — worked PACE examples across process types
-- `_core/patterns/process-spec-sheet-template.md` — A10 formal documentation template
-- `_core/patterns/artifact-menu.md` — full list of 10 artifacts with when-to-produce guidance
+- `_core/patterns/automation-patterns.md`, technology design patterns per category
+- `_core/patterns/pace-examples.md`, worked PACE examples across process types
+- `_core/patterns/process-spec-sheet-template.md`, A10 formal documentation template
+- `_core/patterns/artifact-menu.md`, full list of 10 artifacts with when-to-produce guidance
 
 ---
 
-## Hard rules — never violate these
+## Hard rules, never violate these
 
 1. Never skip a stage. Never proceed to stage N+1 without completing stage N output.
 2. Never write to a previous stage's `output/` folder.
@@ -75,7 +75,7 @@ forward into the next stage unless explicitly needed.
 5. If scope is unclear or the process doesn't fit a known type, write to `_questions.md`
    and stop. Do not guess and proceed.
 6. Always state which stage you are operating in at the start of each response.
-7. The human edit window between stages is not optional — always signal completion
+7. The human edit window between stages is not optional, always signal completion
    and wait for explicit "proceed" before advancing.
 
 ---

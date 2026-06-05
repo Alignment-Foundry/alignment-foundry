@@ -6,15 +6,15 @@ Assemble the extracted metrics into the final one-page competitor brief.
 
 ## Receives
 
-- `summarise/extract-metrics/output.json` — the structured metrics record.
+- `summarise/extract-metrics/output.json`, the structured metrics record.
 
 ## Produces
 
-- `write-summary/output.md` — the final one-page brief.
+- `write-summary/output.md`, the final one-page brief.
 
 ## Tasks (ordered)
 
-1. **write-summary** — Render the metrics record as a readable one-page brief.
+1. **write-summary**, Render the metrics record as a readable one-page brief.
 
 ## Constraints
 

@@ -1,11 +1,11 @@
 ---
 layout: page
 title: Projects
-subtitle: Build ideas, prototypes, and workspace experiments — early-stage, honest, and in progress.
+subtitle: Build ideas, prototypes, and workspace experiments, early-stage, honest, and in progress.
 permalink: /projects/
 ---
 
-This is where build ideas live before they're frameworks. Workspace experiments, prototypes, and GitHub Pages projects exploring how enterprise leaders can harness AI as a tool — not a takeover.
+This is where build ideas live before they're frameworks. Workspace experiments, prototypes, and GitHub Pages projects exploring how enterprise leaders can harness AI as a tool, not a takeover.
 
 ## In progress
 

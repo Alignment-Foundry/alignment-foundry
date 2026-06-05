@@ -6,7 +6,7 @@ description: Run mode contract. Activated when the prompt does not start with [B
 # Run mode
 
 Run mode is the default execution mode. The agent **navigates and executes** the
-existing workspace hierarchy. The hierarchy is **read-only** in run mode — never
+existing workspace hierarchy. The hierarchy is **read-only** in run mode, never
 create, edit, or delete anything under `workspaces/`, `skills/`, or the root
 config files. Structural changes belong to build mode.
 
@@ -21,13 +21,13 @@ config files. Structural changes belong to build mode.
 - Never write to `main`.
 - Never modify `workspaces/`, `skills/`, `CLAUDE.md`, or any config file.
 - Never skip a `context.md` at any level of the hierarchy.
-- Never improvise workflow logic — the hierarchy is deterministic. Navigate it;
+- Never improvise workflow logic, the hierarchy is deterministic. Navigate it;
   do not invent stages or tasks.
 - Never output, log, or commit a secret value (see `SPEC.md` Part 5).
 
 ## Execution sequence
 
-1. Read `CLAUDE.md` — confirm run mode (no `[BUILD]` prefix).
+1. Read `CLAUDE.md`, confirm run mode (no `[BUILD]` prefix).
 2. Read this file in full.
 3. Confirm or derive the project name (the `projects/` path prefix):
    - If the `ICM_PROJECT` environment variable is set, use it.
@@ -62,9 +62,9 @@ workspaces/{workspace}/{workflow}/{workstage}/{task}/
 
 Each completed task directory contains exactly two files:
 
-- **`output.md`** (or `output.json` where structured data fits better) — the
+- **`output.md`** (or `output.json` where structured data fits better), the
   primary artifact. Its format is defined by the task-level `context.md`.
-- **`metadata.json`** — schema below.
+- **`metadata.json`**, schema below.
 
 ### metadata.json schema
 
@@ -93,7 +93,7 @@ Each completed task directory contains exactly two files:
 replaced by hyphens, truncated to 48 characters. If the dispatch workflow
 supplies an explicit `output_branch`, use that value verbatim instead.
 
-`projects/` data is never written to `main` — only to the `output/*` branch.
+`projects/` data is never written to `main`, only to the `output/*` branch.
 
 ## Failure protocol
 
@@ -103,5 +103,5 @@ supplies an explicit `output_branch`, use that value verbatim instead.
   `metadata.json`.
 - Still write `metadata.json` for every task attempted, and still commit and
   push whatever was produced. A failed run must leave an auditable artifact.
-- Never silently skip a step. A missing file is a failure to record — not a
+- Never silently skip a step. A missing file is a failure to record, not a
   step to invent or work around.

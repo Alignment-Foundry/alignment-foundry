@@ -8,8 +8,8 @@ Reference for Stage 01 artifact selection and Stage 05 assembly.
 
 | ID | Name | When to produce | Format | Approx size |
 |----|------|----------------|--------|-------------|
-| **A1** | SIPOC Summary | Always — first artifact | Markdown table | ~200 words |
-| **A2** | Decomposition Tree | Always — core artifact | Indented markdown | ~500–2,000 words |
+| **A1** | SIPOC Summary | Always, first artifact | Markdown table | ~200 words |
+| **A2** | Decomposition Tree | Always, core artifact | Indented markdown | ~500–2,000 words |
 | **A3** | Flow Diagram | When flow complexity > 3 stages | Mermaid code | ~50–100 lines |
 | **A4** | Automation Scorecard | When automation is the goal | Table per step | ~50 words/step |
 | **A5** | Technology Fit Matrix | When technology selection is needed | Grouped table | ~300 words |

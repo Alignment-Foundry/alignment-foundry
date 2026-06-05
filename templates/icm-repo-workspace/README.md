@@ -2,7 +2,7 @@
 
 A template repository structured per the **Interpretable Context Methodology
 (ICM)**: a Claude Code cloud agent clones it, executes one task prompt, and
-commits an artifact to an output branch — with no persistent agent state between
+commits an artifact to an output branch, with no persistent agent state between
 runs.
 
 > **One prompt in → one artifact branch out → container exits.**
@@ -19,7 +19,7 @@ workspaces/{workspace}/{workflow}/{workstage}/{task}/context.md
 ```
 
 An agent reads `CLAUDE.md` first (the router), detects its mode, reads the
-matching skill in `skills/`, then navigates the hierarchy top-down — loading
+matching skill in `skills/`, then navigates the hierarchy top-down, loading
 only the context relevant to the current depth (progressive disclosure).
 
 ## Two modes
@@ -35,7 +35,7 @@ the prompt.
 ## Getting started
 
 1. **Copy this folder** out to its own private GitHub repository.
-2. Add `ANTHROPIC_API_KEY` and `GITHUB_TOKEN` to the repo's GitHub Secrets — see
+2. Add `ANTHROPIC_API_KEY` and `GITHUB_TOKEN` to the repo's GitHub Secrets, see
    `.env.example` for the required names.
 3. Install the local guard:
    ```bash
@@ -56,10 +56,10 @@ CLAUDE.md        router + mode detection + workspace routing table
 SPEC.md          canonical reference and build contract
 claude.json      Claude Code tool / MCP config
 .env.example     required env var names (no values)
-skills/          run.md and build.md — the mode contracts
+skills/          run.md and build.md, the mode contracts
 workspaces/      workspace definitions (read-only in run mode)
-projects/        runtime output — never committed to main
-examples/        a frozen sample run — illustration only, not read by the agent
+projects/        runtime output, never committed to main
+examples/        a frozen sample run, illustration only, not read by the agent
 .github/         dispatch + guard-main workflows, pre-push hook
 ```
 
@@ -68,11 +68,11 @@ worked example. Delete both for a clean deployment.
 
 ## Guarantees
 
-- **Explicit context** — everything the agent needs is a readable file in the
+- **Explicit context**, everything the agent needs is a readable file in the
   repo, never held only in prompts or memory.
-- **Reproducible** — the same repo state plus the same prompt produces
+- **Reproducible**, the same repo state plus the same prompt produces
   equivalent output.
-- **Auditable** — every run is a commit on an output branch; git history is the
+- **Auditable**, every run is a commit on an output branch; git history is the
   execution log.
-- **Secret-safe** — no secret value ever touches a repo file, a prompt, or an
+- **Secret-safe**, no secret value ever touches a repo file, a prompt, or an
   artifact. Values live in GitHub Secrets and are injected at runtime.

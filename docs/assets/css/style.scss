@@ -3,8 +3,10 @@
 ---
 
 /* ==========================================================================
-   Alex S. Moy — Alignment Foundry
+   Alex S. Moy, Alignment Foundry
    Brand-aligned styles. Palette and typography per Style Guide v1.0.
+   Design language shared with the one-page conference reports:
+   layered backdrops, accent eyebrows, scroll-reveal motion, accent-bar cards.
    ========================================================================== */
 
 :root {
@@ -19,12 +21,23 @@
   --text-muted: rgba(255, 255, 255, 0.65);
   --rule: rgba(255, 255, 255, 0.12);
   --surface: rgba(255, 255, 255, 0.04);
+  --surface-2: rgba(255, 255, 255, 0.06);
   --surface-hover: rgba(103, 252, 241, 0.06);
+
+  --aq06: rgba(103, 252, 241, 0.06);
+  --aq10: rgba(103, 252, 241, 0.10);
+  --aq20: rgba(103, 252, 241, 0.20);
+  --aq35: rgba(103, 252, 241, 0.35);
+
+  --gradient: linear-gradient(135deg, #0A2342 0%, #14786C 55%, #67FCF1 100%);
+  --glow: 0 18px 50px -24px rgba(103, 252, 241, 0.45);
 
   --max-width: 1200px;
   --gutter-desktop: 48px;
   --gutter-tablet: 24px;
   --gutter-mobile: 16px;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 /* Reset */
@@ -42,11 +55,18 @@ body {
   line-height: 1.6;
   background: var(--deep-blue);
   color: var(--text);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Layout container — 12-col grid feel via max-width + gutters */
+/* Brand scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--deep-blue); }
+::-webkit-scrollbar-thumb { background: var(--deep-aqua); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--aquamarine); }
+
+/* Layout container, 12-col grid feel via max-width + gutters */
 .container {
   width: 100%;
   max-width: var(--max-width);
@@ -69,23 +89,40 @@ h1, h2, h3, h4 {
 
 h1 {
   font-size: clamp(2.5rem, 5.5vw, 4rem);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
   margin-bottom: 1.25rem;
 }
 
+/* Section headings carry the report "eyebrow" motif: a short accent rule
+   sits above the text, so every page picks up the same alive rhythm. */
 h2 {
   font-size: clamp(1.75rem, 3vw, 2.25rem);
-  letter-spacing: -0.005em;
-  color: var(--aquamarine);
-  margin: 3.5rem 0 1rem;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin: 3.75rem 0 1.25rem;
+  padding-top: 1.25rem;
+  position: relative;
+}
+
+h2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--aquamarine);
+  box-shadow: 0 0 16px rgba(103, 252, 241, 0.6);
 }
 
 h3 {
   font-size: 1.375rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--aquamarine);
   margin: 2rem 0 0.75rem;
+  letter-spacing: -0.01em;
 }
 
 h4 {
@@ -108,7 +145,7 @@ p {
 a {
   color: var(--aquamarine);
   text-decoration: none;
-  border-bottom: 1px solid rgba(103, 252, 241, 0.35);
+  border-bottom: 1px solid var(--aq35);
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
@@ -129,12 +166,13 @@ li { margin-bottom: 0.5rem; }
 
 blockquote {
   border-left: 4px solid var(--aquamarine);
-  padding: 0.25rem 0 0.25rem 1.25rem;
-  margin: 2rem 0;
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 2.5rem 0;
   font-weight: 700;
   font-size: 1.5rem;
   color: var(--aquamarine);
   font-style: normal;
+  background: linear-gradient(90deg, var(--aq06), transparent 80%);
 }
 
 blockquote p { max-width: none; margin: 0; }
@@ -148,7 +186,7 @@ hr {
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.9em;
-  background: rgba(103, 252, 241, 0.08);
+  background: var(--aq10);
   color: var(--aquamarine);
   padding: 0.1em 0.35em;
   border-radius: 3px;
@@ -186,10 +224,10 @@ pre code { background: transparent; color: var(--text); padding: 0; }
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(10, 35, 66, 0.92);
-  backdrop-filter: saturate(140%) blur(8px);
+  background: rgba(10, 35, 66, 0.82);
+  backdrop-filter: saturate(140%) blur(16px);
   border-bottom: 1px solid var(--rule);
-  padding: 1.25rem 0;
+  padding: 0.9rem 0;
 }
 
 .nav-container {
@@ -209,16 +247,23 @@ pre code { background: transparent; color: var(--text); padding: 0; }
 
 .site-logo {
   display: block;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
+  transition: transform 0.35s var(--ease), filter 0.35s var(--ease);
+}
+
+.site-brand:hover .site-logo {
+  transform: rotate(-8deg) scale(1.06);
+  filter: drop-shadow(0 0 10px rgba(103, 252, 241, 0.55));
 }
 
 .site-title {
   font-weight: 700;
   font-size: 1.0625rem;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.01em;
   color: var(--white);
+  transition: color 0.2s ease;
 }
 
 .site-brand:hover .site-title { color: var(--aquamarine); }
@@ -230,27 +275,128 @@ pre code { background: transparent; color: var(--text); padding: 0; }
 }
 
 .site-nav a {
+  position: relative;
   color: rgba(255, 255, 255, 0.78);
   border-bottom: none;
   font-weight: 500;
   font-size: 0.95rem;
+  padding: 0.2rem 0;
+}
+
+/* Animated underline that wipes in from the left. */
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 100%;
+  background: var(--aquamarine);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s var(--ease);
 }
 
 .site-nav a:hover,
-.site-nav a:focus-visible { color: var(--aquamarine); }
+.site-nav a:focus-visible,
+.site-nav a.is-active { color: var(--aquamarine); }
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after,
+.site-nav a.is-active::after { transform: scaleX(1); }
 
 /* Hero ==================================================================== */
 
 .hero {
-  background: linear-gradient(135deg, #0A2342 0%, #14786C 55%, #67FCF1 100%);
-  padding: clamp(4rem, 9vw, 7rem) 0 clamp(3rem, 7vw, 5.5rem);
-  margin-bottom: 4rem;
   position: relative;
+  background: var(--deep-blue);
+  padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(3.5rem, 8vw, 6rem);
+  margin-bottom: 4rem;
   overflow: hidden;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Layered radial glow, the depth the flat gradient was missing. */
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 82% 18%, rgba(20, 120, 108, 0.40) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 8% 78%, rgba(103, 252, 241, 0.10) 0%, transparent 55%),
+    var(--deep-blue);
+}
+
+/* Slow-drifting orb adds life without distraction. */
+.hero-orb {
+  position: absolute;
+  z-index: 0;
+  top: -14%;
+  right: -8%;
+  width: 46vw;
+  max-width: 620px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(103, 252, 241, 0.32), rgba(20, 120, 108, 0.10) 55%, transparent 70%);
+  filter: blur(8px);
+  pointer-events: none;
+  animation: orbFloat 16s ease-in-out infinite;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-3%, 5%) scale(1.06); }
+}
+
+/* Faint engineering grid, masked so it fades at the edges. */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(103, 252, 241, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(103, 252, 241, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, #000 30%, transparent 75%);
+          mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, #000 30%, transparent 75%);
+}
+
+.hero .container { position: relative; z-index: 1; }
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-eyebrow .ey-line {
+  width: 32px;
+  height: 2px;
+  background: var(--aquamarine);
+  box-shadow: 0 0 12px rgba(103, 252, 241, 0.6);
+}
+
+.hero-eyebrow .ey-text {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--aquamarine);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .hero h1 { max-width: 18ch; }
+.hero h1 .aq { color: var(--aquamarine); }
 .hero .lede { color: rgba(255, 255, 255, 0.96); }
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
 
 /* Page layout ============================================================ */
 
@@ -264,7 +410,31 @@ pre code { background: transparent; color: var(--text); padding: 0; }
   margin-bottom: 2.5rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--rule);
+  position: relative;
 }
+
+.page-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--aquamarine);
+}
+
+.page-eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: var(--aquamarine);
+  box-shadow: 0 0 12px rgba(103, 252, 241, 0.6);
+}
+
+.page-header h1 { padding-top: 0; }
+.page-header h1::before { display: none; }
 
 .page-content { max-width: 75ch; }
 .page-content > * { max-width: 75ch; }
@@ -281,101 +451,172 @@ pre code { background: transparent; color: var(--text); padding: 0; }
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  gap: 20px;
   margin: 2.5rem 0;
   justify-content: start;
 }
 
 .card {
+  position: relative;
   display: block;
   background: var(--surface);
-  border: 1px solid rgba(103, 252, 241, 0.15);
-  border-radius: 10px;
-  padding: 1.75rem;
+  border: 1px solid var(--aq20);
+  border-radius: 12px;
+  padding: 1.75rem 1.75rem 2rem;
   color: var(--text);
-  border-bottom: 1px solid rgba(103, 252, 241, 0.15);
-  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  overflow: hidden;
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease),
+              background 0.25s var(--ease), box-shadow 0.25s var(--ease);
   max-width: 380px;
   justify-self: start;
   width: 100%;
+  --card-accent: var(--aquamarine);
+}
+
+/* Accent bar wipes across the top on hover, the report card signature. */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--card-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
 }
 
 .card:hover,
 .card:focus-visible {
-  border-color: var(--aquamarine);
+  border-color: var(--card-accent);
   background: var(--surface-hover);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: var(--glow);
   color: var(--text);
 }
+
+.card:hover::before,
+.card:focus-visible::before { transform: scaleX(1); }
 
 .card h3 {
   margin: 0 0 0.5rem;
-  color: var(--aquamarine);
+  color: var(--white);
+  transition: color 0.2s ease;
 }
+
+.card:hover h3,
+.card:focus-visible h3 { color: var(--card-accent); }
 
 .card p {
   margin: 0;
-  color: var(--text);
+  color: var(--text-muted);
   max-width: none;
 }
 
+/* Cycle accent colors across a grid so a row of cards feels alive. */
+.card-grid .card:nth-child(4n+1) { --card-accent: var(--aquamarine); }
+.card-grid .card:nth-child(4n+2) { --card-accent: var(--light-teal); }
+.card-grid .card:nth-child(4n+3) { --card-accent: var(--deep-aqua); }
+.card-grid .card:nth-child(4n+4) { --card-accent: var(--aquamarine); }
+
 .card-meta {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  margin-bottom: 0.5rem;
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--card-accent, var(--aquamarine));
+  margin-bottom: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
+  font-weight: 700;
 }
 
 /* Buttons / CTAs ========================================================= */
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   background: var(--aquamarine);
   color: var(--deep-blue);
-  padding: 16px 32px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  border-radius: 4px;
+  padding: 15px 30px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  border-radius: 6px;
   border-bottom: none;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s var(--ease),
+              box-shadow 0.2s ease;
 }
 
 .btn:hover,
 .btn:focus-visible {
-  background: var(--deep-aqua);
-  color: var(--white);
+  background: var(--white);
+  color: var(--deep-blue);
+  transform: translateY(-2px);
+  box-shadow: var(--glow);
 }
 
 .btn--ghost {
   background: transparent;
   color: var(--aquamarine);
-  border: 1px solid var(--aquamarine);
+  border: 1px solid var(--aq35);
+  box-shadow: none;
 }
 
-.btn--ghost:hover { background: var(--aquamarine); color: var(--deep-blue); }
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: var(--aq10);
+  color: var(--white);
+  border-color: var(--aquamarine);
+  box-shadow: none;
+}
 
 /* Stats =================================================================== */
 
 .stat-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 2rem;
+  gap: 2px;
   margin: 2.5rem 0;
 }
 
+.stat {
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  padding: 2rem 1.5rem;
+  transition: background 0.25s var(--ease);
+}
+
+.stat:hover { background: var(--aq06); }
+
 .stat-value {
-  font-size: clamp(3rem, 6vw, 4rem);
+  font-size: clamp(2.75rem, 6vw, 3.75rem);
   font-weight: 700;
   color: var(--aquamarine);
   line-height: 1;
   display: block;
   margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
 }
 
 .stat-label {
   color: var(--text-muted);
   font-size: 0.95rem;
+}
+
+/* Scroll reveal ========================================================== */
+
+/* Hidden state only applies once JS confirms it can reveal them, so the
+   site degrades gracefully with JS disabled. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  will-change: opacity, transform;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Footer ================================================================== */
@@ -386,6 +627,8 @@ pre code { background: transparent; color: var(--text); padding: 0; }
   margin-top: 5rem;
   font-size: 0.95rem;
   color: var(--text-muted);
+  background:
+    radial-gradient(ellipse 60% 100% at 50% 100%, rgba(20, 120, 108, 0.14), transparent 70%);
 }
 
 .footer-grid {
@@ -404,9 +647,9 @@ pre code { background: transparent; color: var(--text); padding: 0; }
 .footer-tagline { color: var(--text-muted); margin: 0; max-width: 32ch; }
 
 .footer-heading {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--white);
   margin-bottom: 0.75rem;
 }
@@ -433,12 +676,17 @@ pre code { background: transparent; color: var(--text); padding: 0; }
 
 .footer-meta p { margin: 0; max-width: none; }
 
+.footer-meta .footer-creed { color: var(--aquamarine); font-weight: 500; }
+
 /* Reduced motion ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
   html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; }
+  .hero-orb { animation: none; }
 }

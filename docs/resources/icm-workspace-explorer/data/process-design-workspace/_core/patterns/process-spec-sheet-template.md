@@ -48,7 +48,7 @@
 
 ## 4. Process Decomposition
 
-[Paste condensed version from A2-decomposition.md — top 2 levels only for this document]
+[Paste condensed version from A2-decomposition.md, top 2 levels only for this document]
 
 ---
 

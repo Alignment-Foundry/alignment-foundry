@@ -1,19 +1,19 @@
-# Stage 02 — Hierarchical Decomposition
+# Stage 02, Hierarchical Decomposition
 
 **One job**: Break each SIPOC process step into a full Stage → Step → Task tree.
 
 **Skill to load**: `_core/skills/work-decomposition/SKILL.md` → Phase 2 only.
 
-**Input**: Read from `01-intake/output/` — use human-edited versions as-is.
+**Input**: Read from `01-intake/output/`, use human-edited versions as-is.
 
 ---
 
 ## Read before starting
 
 Open and read:
-- `01-intake/output/sipoc.md` — the 5–7 process steps are your decomposition seeds
-- `01-intake/output/scope.md` — process type and boundaries define decomposition depth
-- `01-intake/output/artifact-selection.md` — determines how detailed to go
+- `01-intake/output/sipoc.md`, the 5–7 process steps are your decomposition seeds
+- `01-intake/output/scope.md`, process type and boundaries define decomposition depth
+- `01-intake/output/artifact-selection.md`, determines how detailed to go
 
 Do not re-run intake. Do not ask scope questions that Stage 01 already answered.
 Do not modify anything in `01-intake/output/`.
@@ -28,7 +28,7 @@ Do not modify anything in `01-intake/output/`.
 PROCESS
 └── STAGE: Named phase with clear entry and exit condition
     ├── STEP: Discrete activity producing a specific output or state change
-    │   ├── TASK: Atomic action — one actor, one tool, one output
+    │   ├── TASK: Atomic action, one actor, one tool, one output
     │   └── TASK: ...
     └── STEP: ...
 └── STAGE: ...
@@ -44,19 +44,19 @@ PROCESS
 actor:          [human role / system / external / hybrid]
 trigger:        [what starts this unit]
 output:         [what it produces]
-decision_point: [true / false — does this require human judgment?]
+decision_point: [true / false, does this require human judgment?]
 data_in:        [information/material consumed]
 data_out:       [information/material produced]
 tools:          [current tools or systems used, if known]
 ```
 
-**Mark decision gateways** — points where the path branches on a condition. Use:
+**Mark decision gateways**, points where the path branches on a condition. Use:
 `⊕ DECISION: [condition] → [option A] | [option B]`
 
-**Mark parallel tracks** — steps that can run concurrently:
+**Mark parallel tracks**, steps that can run concurrently:
 `‖ PARALLEL: steps X and Y can run simultaneously`
 
-**Mark loops** — steps that repeat until a condition is met:
+**Mark loops**, steps that repeat until a condition is met:
 `↺ LOOP: repeat until [condition]`
 
 ---
@@ -73,14 +73,14 @@ tools:          [current tools or systems used, if known]
 
 ---
 
-## Output files — write to `output/`
+## Output files, write to `output/`
 
 | File | Contents | Required |
 |------|----------|----------|
 | `decomposition.md` | Full indented Stage/Step/Task tree with annotations | Yes |
 | `flow-diagram.md` | Mermaid flowchart (if complexity > 3 stages) | If complex |
 | `decision-points.md` | List of all branch points, conditions, and options | Yes |
-| `actors.md` | Full actor inventory — roles, systems, and responsibilities | Yes |
+| `actors.md` | Full actor inventory, roles, systems, and responsibilities | Yes |
 | `data-flows.md` | What data enters and exits each stage | If automation is a goal |
 | `handoffs.md` | Stage-to-stage transitions: type, latency, failure mode | If efficiency is a goal |
 
@@ -92,7 +92,7 @@ Tell the human:
 > "Stage 02 complete. The decomposition tree is in `02-decompose/output/decomposition.md`.
 > Common things to review: actor assignments, missed steps, granularity (too detailed or
 > not enough), anything marked as a decision point that shouldn't be (or vice versa).
-> Edit freely — your version is what Stage 03 will use. Say **proceed to stage 03** when ready."
+> Edit freely, your version is what Stage 03 will use. Say **proceed to stage 03** when ready."
 
 ---
 

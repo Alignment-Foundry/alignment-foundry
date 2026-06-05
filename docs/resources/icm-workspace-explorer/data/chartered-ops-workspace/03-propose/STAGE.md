@@ -1,4 +1,4 @@
-# Stage 03 — Propose
+# Stage 03, Propose
 
 **One job**: Generate a specific, testable, scope-checked fix proposal for a confirmed finding.
 
@@ -20,7 +20,7 @@ SCOPE CHECK for FIND-[NNN]
    Evidence: [cite charter section]
 
 2. Is this change type in my autonomous execution scope?
-   (Or does it require human approval — that's still ok, just note it)
+   (Or does it require human approval; that's still ok, just note it)
    Answer: AUTONOMOUS / REQUIRES-APPROVAL / OUT-OF-SCOPE
    Evidence: [cite charter section]
 
@@ -62,7 +62,7 @@ Write to `03-propose/drafts/PROP-[NNN]-[slug].md`:
 **Scope check**: PASSED
 **Risk level**: low / medium / high
 **Requires approval**: no (autonomous) / yes (production)
-**Similar past proposals**: [PROP-NNN was similar — resolved successfully / was rejected because X]
+**Similar past proposals**: [PROP-NNN was similar, resolved successfully / was rejected because X]
 
 ## Root cause
 [What is causing this? Evidence-based. State confidence %.]
@@ -71,13 +71,13 @@ Confidence: [XX]%
 ## Proposed change
 
 ### Current state
-[Exact current code, config, rule, or process — copy verbatim where possible]
+[Exact current code, config, rule, or process, copy verbatim where possible]
 
 ### Proposed state
-[Exact replacement — diff format preferred for code/config]
+[Exact replacement, diff format preferred for code/config]
 
 ## Scope check (detail)
-- Affected component: [name] — in observation scope: ✓
+- Affected component: [name], in observation scope: ✓
 - Change type: [config / code / infra / process / routing]
 - Autonomous scope: [yes / requires-approval]
 - Hard limits: none triggered ✓
@@ -91,18 +91,18 @@ Confidence: [XX]%
 - Risk of regression: [none identified / describe risk]
 
 ## PACE update needed?
-[YES — describe which step's PACE levels need updating and how]
-[NO — this change does not affect resilience design]
+[YES, describe which step's PACE levels need updating and how]
+[NO; this change does not affect resilience design]
 
 ## Rollback plan
 [How to undo this if it causes problems. Step by step.]
 
 ## Deployment sequence
 1. Apply to dev environment
-2. Run test command — verify pass
-3. Apply to staging — monitor 30 minutes
+2. Run test command, verify pass
+3. Apply to staging, monitor 30 minutes
 4. (If requires-approval) → human review and production sign-off
-5. Apply to production — monitor 24 hours
+5. Apply to production, monitor 24 hours
 6. Write outcome to Stage 06
 ```
 
@@ -121,5 +121,5 @@ Confidence: [XX]%
 
 - Do not apply any change to any environment yet
 - Do not generate multiple proposals for the same finding simultaneously
-- Do not propose touching out-of-scope components — escalate instead
+- Do not propose touching out-of-scope components, escalate instead
 - Do not let urgency override the scope check

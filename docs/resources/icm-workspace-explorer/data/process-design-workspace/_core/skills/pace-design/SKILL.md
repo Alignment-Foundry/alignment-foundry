@@ -20,7 +20,7 @@ Apply to a step if ANY of these are true:
 - Customer-facing or safety-critical
 - External dependency present (third-party, vendor, API)
 - Single point of failure with no existing backup
-- Compliance requirement — must complete regardless of system state
+- Compliance requirement, must complete regardless of system state
 
 ---
 
@@ -32,7 +32,7 @@ PRIMARY      The default, preferred method under normal conditions.
 
 ALTERNATIVE  A different approach achieving the same outcome.
              Triggered when Primary is unavailable or degraded.
-             Same capability level — different execution path.
+             Same capability level, different execution path.
 
 CONTINGENT   A degraded-mode option.
              Achieves partial goal when Alternative also fails.
@@ -49,12 +49,12 @@ EMERGENCY    Last resort. Minimum viable action.
 
 ## PACE design rules
 
-1. Each level must be **independently executable** — don't assume a higher level ran
-2. **Trigger conditions must be observable** — not "if it feels slow" but "if API error rate > 5%"
-3. **Emergency must be analog-safe** — no laptop, no internet, no cloud access required
-4. **Recovery path required** — how does the step re-enter Primary after emergency mode?
-5. **Cost escalation is acceptable** — each fallback level will cost more; that's the tradeoff
-6. **Test all levels** — don't wait for a real failure to discover the emergency procedure is broken
+1. Each level must be **independently executable**, don't assume a higher level ran
+2. **Trigger conditions must be observable**, not "if it feels slow" but "if API error rate > 5%"
+3. **Emergency must be analog-safe**, no laptop, no internet, no cloud access required
+4. **Recovery path required**, how does the step re-enter Primary after emergency mode?
+5. **Cost escalation is acceptable**, each fallback level will cost more; that's the tradeoff
+6. **Test all levels**, don't wait for a real failure to discover the emergency procedure is broken
 
 ---
 
@@ -73,17 +73,17 @@ EMERGENCY    Last resort. Minimum viable action.
 
 **ALTERNATIVE**
 - Method: [different approach, same outcome]
-- Trigger: [specific observable condition — be precise]
+- Trigger: [specific observable condition, be precise]
 - Trade-off: [slower / more expensive / less accurate by how much?]
 
 **CONTINGENT**
 - Method: [partial capability approach]
-- Trigger: [specific observable condition — Alternative unavailable]
-- Acceptable degradation: [what the business can tolerate — be specific]
+- Trigger: [specific observable condition, Alternative unavailable]
+- Acceptable degradation: [what the business can tolerate, be specific]
 - Recovery: [how to return to PRIMARY when systems recover]
 
 **EMERGENCY**
-- Method: [analog-safe procedure — no digital tools assumed]
+- Method: [analog-safe procedure, no digital tools assumed]
 - Trigger: [all other levels unavailable]
 - Escalation: [who to contact, what to say, what to document]
 - Manual record: [what paper/physical log is maintained]

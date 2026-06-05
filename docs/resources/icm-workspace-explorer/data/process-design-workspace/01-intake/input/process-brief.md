@@ -4,13 +4,13 @@
 
 **Process name**: [e.g. Vendor Invoice Processing]
 
-**Goal**: [One sentence — what should this process accomplish when working well?]
+**Goal**: [One sentence, what should this process accomplish when working well?]
 > Example: "Convert vendor invoices from receipt to approved ERP entry in under 4 hours
 > with less than 2% error rate."
 
 **Rough description / steps**:
 > Describe the process in plain language. Bullet points are fine. Don't worry about being
-> formal — the agent will structure this properly.
+> formal, the agent will structure this properly.
 
 1.
 2.

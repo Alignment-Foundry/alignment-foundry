@@ -26,7 +26,7 @@ and maintains a human-gated path to production with a complete audit trail.
 
 - **Stage 05**: Every production deployment requires explicit approval here
 - **Second reviewer**: Required for critical severity + IAM/DB schema/firewall changes
-- **Scan scope**: Configured in `_core/agent-configs/scan-targets.md` — agent doesn't self-expand
+- **Scan scope**: Configured in `_core/agent-configs/scan-targets.md`, agent doesn't self-expand
 - **Changelog**: Every production change is logged with your approval attribution
 
 ## What the agent handles automatically
@@ -52,7 +52,7 @@ The correlation stage is what makes this manageable.
 ## The learning loop
 
 After each run, Stage 06 writes to `_core/patterns/scan-learnings.md`.
-These learnings inform future scans without changing the skill files —
+These learnings inform future scans without changing the skill files, 
 the workspace gets smarter about your specific system over time.
 
 ---

@@ -16,7 +16,7 @@ Assign an Automation Tier (1–5) and recommend a technology category.
 
 Score each Step 1–5 per dimension. Sum for composite score out of 35.
 
-| # | Dimension | 1 — Hard to automate | 5 — Easy to automate |
+| # | Dimension | 1, Hard to automate | 5, Easy to automate |
 |---|-----------|---------------------|---------------------|
 | 1 | Repeatability | Unique each time | Identical every time |
 | 2 | Rule Clarity | Requires deep expertise | Fully rule-specifiable |
@@ -32,7 +32,7 @@ Score each Step 1–5 per dimension. Sum for composite score out of 35.
 
 | Score | Tier | Label | Recommended action |
 |-------|------|-------|--------------------|
-| 28–35 | 1 | Automate Now | Build first — strong ROI, low risk |
+| 28–35 | 1 | Automate Now | Build first, strong ROI, low risk |
 | 20–27 | 2 | Automate with AI | Use LLM/ML for judgment gaps |
 | 12–19 | 3 | Human-in-Loop | Automate scaffolding, human decides |
 | 5–11 | 4 | Assist / Augment | Tools to support humans, not replace |

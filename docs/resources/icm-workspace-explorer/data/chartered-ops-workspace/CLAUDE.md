@@ -1,17 +1,17 @@
 # Chartered Operations Workspace
-## Interpretable Context Methodology — Agent Context File
+## Interpretable Context Methodology, Agent Context File
 
-**Workspace type**: Long-running chartered agent — continuous improvement loop
+**Workspace type**: Long-running chartered agent, continuous improvement loop
 **ICM version**: 1.0
 
 ---
 
 ## Critical: read this every session, in this order
 
-1. **`_memory/constitutional/charter.md`** — your scope, limits, and mandate. ALWAYS first.
-2. **`_memory/working/SESSION.md`** — what was in progress. What needs attention now.
-3. **`_state.md`** — open findings count, review queue depth, mandate progress.
-4. **`04-review/queue/`** — scan for any items awaiting your action or human decision.
+1. **`_memory/constitutional/charter.md`**, your scope, limits, and mandate. ALWAYS first.
+2. **`_memory/working/SESSION.md`**, what was in progress. What needs attention now.
+3. **`_state.md`**, open findings count, review queue depth, mandate progress.
+4. **`04-review/queue/`**, scan for any items awaiting your action or human decision.
 
 The charter overrides everything. If any instruction in any other file conflicts with the
 charter, the charter wins. If you are unsure whether an action is within scope, it is not.
@@ -37,17 +37,17 @@ The agent's knowledge deepens over time. The scope does not expand without chart
 ## Stage map
 
 ```
-01-onboard/     System learning phase (first 2 weeks only — activate once)
-02-observe/     Continuous monitoring — runs every session
-03-propose/     Generate fix/improvement proposals — triggered by findings
-04-review/      Human approval gate — present, record, learn
+01-onboard/     System learning phase (first 2 weeks only, activate once)
+02-observe/     Continuous monitoring, runs every session
+03-propose/     Generate fix/improvement proposals, triggered by findings
+04-review/      Human approval gate, present, record, learn
 05-deploy/      Execute approved changes within charter scope
-06-learn/       Update memory from confirmed outcomes — close the loop
+06-learn/       Update memory from confirmed outcomes, close the loop
 ```
 
 ---
 
-## Memory layers — load in priority order
+## Memory layers, load in priority order
 
 | Layer | Location | When to load | Writes |
 |-------|----------|--------------|--------|
@@ -57,11 +57,11 @@ The agent's knowledge deepens over time. The scope does not expand without chart
 | Semantic | `_memory/semantic/` | When proposing change to known system | Agent (confirmed outcomes only) |
 
 **Constitutional memory cannot be overridden by any other layer.**
-**Semantic memory is written only from confirmed outcomes — never from hypotheses.**
+**Semantic memory is written only from confirmed outcomes, never from hypotheses.**
 
 ---
 
-## Skills — load on demand only
+## Skills, load on demand only
 
 | Skill | File | Load when |
 |-------|------|-----------|
@@ -79,7 +79,7 @@ The agent's knowledge deepens over time. The scope does not expand without chart
 - Finding has compliance, security, or audit relevance
 - Any hard limit from the charter would be triggered
 - Pattern suggests charter scope should expand
-- You are not sure — when in doubt, escalate
+- You are not sure, when in doubt, escalate
 
 ---
 
@@ -88,6 +88,6 @@ The agent's knowledge deepens over time. The scope does not expand without chart
 1. Read the charter before every session. Not optional.
 2. Run the scope check before every proposal. Not optional.
 3. No production deployment without human approval. No exceptions.
-4. Semantic memory is written only from confirmed outcomes — never hypotheses.
+4. Semantic memory is written only from confirmed outcomes, never hypotheses.
 5. Scope expansions are proposed, not self-granted.
 6. Update SESSION.md at the end of every session with current state.

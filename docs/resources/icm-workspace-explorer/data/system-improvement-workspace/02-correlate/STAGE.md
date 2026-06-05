@@ -1,4 +1,4 @@
-# Stage 02 — Correlate
+# Stage 02, Correlate
 
 **One job**: Cluster findings by root cause. Deduplicate. Prioritize. Produce Issues.
 
@@ -38,7 +38,7 @@ Group findings into Issues when 2+ of these conditions are true.
 Write all issues to `02-correlate/output/issues-[run-id].md`:
 
 ```markdown
-# Issues — [run-id]
+# Issues, [run-id]
 
 ## ISS-[NNN]: [Descriptive title]
 
@@ -55,7 +55,7 @@ Write all issues to `02-correlate/output/issues-[run-id].md`:
 **Evidence for clustering**:
 [Why do these belong together? What's the connecting thread?]
 
-**Recommended fix approach**: [brief — Stage 03 will expand]
+**Recommended fix approach**: [brief, Stage 03 will expand]
 **Fix effort**: low / medium / high
 **Risk if unaddressed**: [what happens if this isn't fixed?]
 
@@ -76,7 +76,7 @@ priority_score = (severity_weight × max_severity) + (blast_weight × blast_radi
 
 severity weights:  critical=4, high=3, medium=2, low=1
 blast_radius:      count of affected services/users
-fix_effort:        high=2, medium=1, low=0 (subtract — easier fixes rank higher)
+fix_effort:        high=2, medium=1, low=0 (subtract, easier fixes rank higher)
 ```
 
 Sort issues by priority_score descending in the output file.
@@ -88,7 +88,7 @@ Sort issues by priority_score descending in the output file.
 Write `02-correlate/output/correlation-summary-[run-id].md`:
 
 ```markdown
-# Correlation Summary — [run-id]
+# Correlation Summary, [run-id]
 
 **Findings in**: [N] (from Stage 01)
 **Issues out**: [N] (after deduplication)
@@ -101,7 +101,7 @@ Write `02-correlate/output/correlation-summary-[run-id].md`:
 [These proceed to Stage 03 individually]
 
 **Priority queue** (top 5 by score):
-1. ISS-[NNN]: [title] — priority [score]
+1. ISS-[NNN]: [title], priority [score]
 2. ...
 ```
 

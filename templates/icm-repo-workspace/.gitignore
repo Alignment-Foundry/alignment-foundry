@@ -1,7 +1,7 @@
-# Runtime output — never committed to main (SPEC.md Part 4)
+# Runtime output, never committed to main (SPEC.md Part 4)
 projects/**
 
-# Local secret values — must never be committed (SPEC.md Part 5)
+# Local secret values, must never be committed (SPEC.md Part 5)
 .env
 .env.local
 

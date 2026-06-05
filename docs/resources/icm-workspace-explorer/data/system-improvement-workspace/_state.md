@@ -11,12 +11,12 @@
 
 | Stage | Status | Item count | Last updated |
 |-------|--------|-----------|--------------|
-| 01 — Scan | [ ] | — | — |
-| 02 — Correlate | [ ] | — | — |
-| 03 — Fix Gen | [ ] | — | — |
-| 04 — Validate | [ ] | — | — |
-| 05 — Human Review | [ ] | — | — |
-| 06 — Deploy/Learn | [ ] | — | — |
+| 01, Scan | [ ] |, |, |
+| 02, Correlate | [ ] |, |, |
+| 03, Fix Gen | [ ] |, |, |
+| 04, Validate | [ ] |, |, |
+| 05, Human Review | [ ] |, |, |
+| 06, Deploy/Learn | [ ] |, |, |
 
 ---
 

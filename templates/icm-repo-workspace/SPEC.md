@@ -2,24 +2,24 @@
 # ICM Repo-as-a-Workspace
 
 **Version:** 1.0.0  
-**Status:** Active — canonical reference and agent build contract  
+**Status:** Active, canonical reference and agent build contract  
 
 ---
 
-## Part 1 — Core Concepts
+## Part 1, Core Concepts
 
 ### Interpretable Context Methodology (ICM)
 
-ICM is a design philosophy for structuring AI agent workspaces so that all context, intent, constraints, and workflow logic are **explicit, human-readable, and version-controlled** — never implicit in model memory, chat history, or runtime state.
+ICM is a design philosophy for structuring AI agent workspaces so that all context, intent, constraints, and workflow logic are **explicit, human-readable, and version-controlled**, never implicit in model memory, chat history, or runtime state.
 
 **Core principle: the workspace must be fully interpretable without the agent that created it.**
 
 ICM has four properties:
 
-1. **Explicit context** — Everything the agent needs to execute a task lives in the repo as a readable file. No context is passed only through prompts or held only in memory.
-2. **Defined scope** — Each workspace has a narrow, declared purpose. Narrow scope makes agent behavior predictable and auditable.
-3. **Reproducible execution** — Given the same repo state and the same prompt, two independent runs produce equivalent outputs. Workflow logic is deterministic; the agent navigates it, not improvises it.
-4. **Auditable history** — Every run produces a committed artifact on an output branch. Git history is the execution log.
+1. **Explicit context**, Everything the agent needs to execute a task lives in the repo as a readable file. No context is passed only through prompts or held only in memory.
+2. **Defined scope**, Each workspace has a narrow, declared purpose. Narrow scope makes agent behavior predictable and auditable.
+3. **Reproducible execution**, Given the same repo state and the same prompt, two independent runs produce equivalent outputs. Workflow logic is deterministic; the agent navigates it, not improvises it.
+4. **Auditable history**, Every run produces a committed artifact on an output branch. Git history is the execution log.
 
 ICM is not a framework or a library. It is a set of folder conventions, file contracts, and routing rules that this repo encodes structurally.
 
@@ -27,20 +27,20 @@ ICM is not a framework or a library. It is a set of folder conventions, file con
 
 ### Repo-as-a-Workspace
 
-A **Repo-as-a-Workspace** is a private GitHub repository structured according to ICM conventions so that it can be cloned by a Claude Code cloud agent, executed against a single task prompt, and produce a committed artifact — with no persistent agent state required between runs.
+A **Repo-as-a-Workspace** is a private GitHub repository structured according to ICM conventions so that it can be cloned by a Claude Code cloud agent, executed against a single task prompt, and produce a committed artifact, with no persistent agent state required between runs.
 
 The repository serves four roles simultaneously:
 
-- **Workflow definition** — folder hierarchy and `context.md` files define what the agent does and in what order
-- **Context layer** — `CLAUDE.md` and `context.md` files provide grounding at every level of the hierarchy
-- **Secrets interface** — environment variable names are declared in `.env.example`; values are injected at runtime by GitHub Actions, never stored in the repo
-- **Artifact store** — outputs are committed to named `output/*` branches, never to `main`
+- **Workflow definition**, folder hierarchy and `context.md` files define what the agent does and in what order
+- **Context layer**, `CLAUDE.md` and `context.md` files provide grounding at every level of the hierarchy
+- **Secrets interface**, environment variable names are declared in `.env.example`; values are injected at runtime by GitHub Actions, never stored in the repo
+- **Artifact store**, outputs are committed to named `output/*` branches, never to `main`
 
 **The execution contract is always:** one prompt in → one artifact branch out → container exits.
 
 ---
 
-## Part 2 — Folder Hierarchy
+## Part 2, Folder Hierarchy
 
 The workspace is organised as a four-level hierarchy under a single root. Each level has a defined scope and a `context.md` that narrows the agent's instructions progressively as it descends.
 
@@ -78,22 +78,22 @@ workspaces/
         context.md         → exact instructions for this atomic task
 ```
 
-Each `context.md` is **additive and narrowing** — it adds specificity without contradicting the level above. The agent loads only the context relevant to the depth of the current task. It never loads the full tree upfront.
+Each `context.md` is **additive and narrowing**; it adds specificity without contradicting the level above. The agent loads only the context relevant to the depth of the current task. It never loads the full tree upfront.
 
 ---
 
-## Part 3 — Routing, Skills, and Context Files
+## Part 3, Routing, Skills, and Context Files
 
 ### CLAUDE.md (root)
 
 `CLAUDE.md` is the agent's entry point and **router only**. It is the first file read on every run. It must contain:
 
-1. **What this repo is** — one paragraph describing the repo's purpose
-2. **Mode detection** — logic for routing to the correct skill based on the prompt prefix
-3. **Workspace routing table** — list of available workspaces with one-line descriptions (used in run mode)
-4. **Repo structure map** — the folder layout for orientation
+1. **What this repo is**, one paragraph describing the repo's purpose
+2. **Mode detection**, logic for routing to the correct skill based on the prompt prefix
+3. **Workspace routing table**, list of available workspaces with one-line descriptions (used in run mode)
+4. **Repo structure map**, the folder layout for orientation
 
-`CLAUDE.md` carries no behavioural rules or constraints itself. All execution logic lives in the skill files. This keeps `CLAUDE.md` stable — it rarely needs to change, even as skills and workspaces evolve.
+`CLAUDE.md` carries no behavioural rules or constraints itself. All execution logic lives in the skill files. This keeps `CLAUDE.md` stable; it rarely needs to change, even as skills and workspaces evolve.
 
 ### Skills
 
@@ -113,7 +113,7 @@ Each skill file has YAML frontmatter (`name`, `description`) followed by the ful
 
 ### Mode detection
 
-The `[BUILD]` tag must appear at the very start of the prompt to activate build mode. Any other position defaults to run mode. This is the only mode signal — there are no environment variables or config flags for mode switching.
+The `[BUILD]` tag must appear at the very start of the prompt to activate build mode. Any other position defaults to run mode. This is the only mode signal; there are no environment variables or config flags for mode switching.
 
 | Prompt | Mode |
 |---|---|
@@ -166,11 +166,11 @@ The `[BUILD]` tag must appear at the very start of the prompt to activate build 
 
 ---
 
-## Part 4 — Projects Tree and Output Paths
+## Part 4, Projects Tree and Output Paths
 
 ### Structure
 
-Runtime outputs are written to a `projects/` tree. The `workspaces/` segment is **replaced** by `projects/{project-name}/` — the rest of the path is preserved exactly:
+Runtime outputs are written to a `projects/` tree. The `workspaces/` segment is **replaced** by `projects/{project-name}/`, the rest of the path is preserved exactly:
 
 ```
 projects/
@@ -228,7 +228,7 @@ The primary artifact. Format is defined by the task-level `context.md`.
 
 `projects/` data is **never written to `main`**. It exists only on `output/*` branches. Three enforcement layers:
 
-**Layer 1 — GitHub Actions guard** (`.github/workflows/guard-main.yml`):
+**Layer 1, GitHub Actions guard** (`.github/workflows/guard-main.yml`):
 ```yaml
 on:
   push:
@@ -248,7 +248,7 @@ jobs:
           fi
 ```
 
-**Layer 2 — pre-push hook** (installed to `.git/hooks/pre-push`):
+**Layer 2, pre-push hook** (installed to `.git/hooks/pre-push`):
 ```bash
 #!/usr/bin/env bash
 branch=$(git symbolic-ref HEAD 2>/dev/null | sed 's|refs/heads/||')
@@ -260,9 +260,9 @@ if [ "$branch" = "main" ]; then
 fi
 ```
 
-**Layer 3 — `.gitignore`:**
+**Layer 3, `.gitignore`:**
 ```
-# Runtime output — never committed to main
+# Runtime output, never committed to main
 projects/**
 ```
 
@@ -270,15 +270,15 @@ The agent uses `git add --force projects/` only when on an output branch. An acc
 
 ---
 
-## Part 5 — Secret Management
+## Part 5, Secret Management
 
 No secret value ever touches a repo file, a prompt, or an artifact.
 
 | Tier | Location | Role |
 |---|---|---|
-| 1 — Source of truth | GitHub Secrets (repo or org scoped) | Where values are stored |
-| 2 — Injection | GitHub Actions `env:` block in workflow YAML | Where values enter the container |
-| 3 — Consumption | `os.environ` in scripts | Where scripts read values |
+| 1, Source of truth | GitHub Secrets (repo or org scoped) | Where values are stored |
+| 2, Injection | GitHub Actions `env:` block in workflow YAML | Where values enter the container |
+| 3, Consumption | `os.environ` in scripts | Where scripts read values |
 
 ### `.env.example`
 
@@ -317,7 +317,7 @@ The following patterns in any tracked file must be treated as a hard error:
 
 ---
 
-## Part 6 — Claude Code Configuration
+## Part 6, Claude Code Configuration
 
 ### `claude.json` (root)
 
@@ -333,7 +333,7 @@ The following patterns in any tracked file must be treated as a hard error:
 
 ---
 
-## Part 7 — GitHub Actions Dispatch
+## Part 7, GitHub Actions Dispatch
 
 ### `dispatch.yml`
 
@@ -403,20 +403,20 @@ Scheduled runs should derive the project name deterministically from the date so
 
 ---
 
-## Part 8 — Complete Repo File Layout
+## Part 8, Complete Repo File Layout
 
 ```
 /
-├── CLAUDE.md                              ← agent entry point — router only
-├── SPEC.md                                ← this file — human reference and build contract
+├── CLAUDE.md                              ← agent entry point, router only
+├── SPEC.md                                ← this file, human reference and build contract
 ├── README.md                              ← human-facing overview
 ├── claude.json                            ← Claude Code tool and MCP config
 ├── .env.example                           ← env var names only, no values
 ├── .gitignore                             ← includes projects/**
 │
 ├── skills/
-│   ├── run.md                             ← run mode contract — execution, outputs, failure
-│   └── build.md                           ← build mode contract — scaffolding, schemas, branch rules
+│   ├── run.md                             ← run mode contract, execution, outputs, failure
+│   └── build.md                           ← build mode contract, scaffolding, schemas, branch rules
 │
 ├── workspaces/
 │   └── {workspace}/
@@ -447,13 +447,13 @@ Scheduled runs should derive the project name deterministically from the date so
 
 ---
 
-## Part 9 — Agent Execution Flow
+## Part 9, Agent Execution Flow
 
 ### Run mode (default)
 
 ```
 1.  Clone repo
-2.  Read CLAUDE.md — orient, detect mode (no [BUILD] tag → run mode)
+2.  Read CLAUDE.md, orient, detect mode (no [BUILD] tag → run mode)
 3.  Read skills/run.md in full
 4.  Confirm or derive ICM_PROJECT name
 5.  Parse prompt → identify target workspace from routing table
@@ -471,16 +471,16 @@ Scheduled runs should derive the project name deterministically from the date so
 10. git add --force projects/
 11. git commit -m "run: {prompt-slug}"
 12. git push origin output/{YYYY-MM-DD}-{slug}
-13. Exit — no state retained
+13. Exit, no state retained
 ```
 
 ### Build mode ([BUILD] prefix)
 
 ```
 1.  Clone repo
-2.  Read CLAUDE.md — detect [BUILD] tag at position 0 → build mode
+2.  Read CLAUDE.md, detect [BUILD] tag at position 0 → build mode
 3.  Read skills/build.md in full
-4.  Strip [BUILD] from prompt — remainder is the build instruction
+4.  Strip [BUILD] from prompt, remainder is the build instruction
 5.  Parse build instruction → classify operation (new workspace / workflow /
     workstage / task / edit existing)
 6.  Check workspaces/ for existing structure at target path
@@ -488,33 +488,33 @@ Scheduled runs should derive the project name deterministically from the date so
 8.  If new workspace created: add row to routing table in CLAUDE.md
 9.  Write build-metadata.json to repo root
 10. git add workspaces/ CLAUDE.md README.md claude.json .env.example
-    (never git add . — do not stage projects/ or .github/)
+    (never git add ., do not stage projects/ or .github/)
 11. git commit -m "build: {description-slug}"
 12. git push origin build/{YYYY-MM-DD}-{slug}
-13. Exit — do not open PR, do not merge
+13. Exit, do not open PR, do not merge
 ```
 
 In both modes: never skip a `context.md`, never write to `main`, never output a secret value.
 
 ---
 
-## Part 10 — Glossary
+## Part 10, Glossary
 
 | Term | Definition |
 |---|---|
-| **ICM** | Interpretable Context Methodology — all agent context is explicit, version-controlled, and human-readable |
+| **ICM** | Interpretable Context Methodology, all agent context is explicit, version-controlled, and human-readable |
 | **Repo-as-a-Workspace** | A GitHub repo structured per ICM conventions, executable by a Claude Code cloud agent |
-| **Workspace** | A domain area under `workspaces/` — the top level of the four-level hierarchy |
+| **Workspace** | A domain area under `workspaces/`, the top level of the four-level hierarchy |
 | **Workflow** | A defined, repeatable process within a workspace |
 | **Workstage** | A single step within a workflow |
 | **Task** | An atomic unit of work within a workstage |
-| **CLAUDE.md** | Root-level agent entry point — router and mode detector only; carries no execution rules |
-| **Skill** | A mode-scoped instruction file in `skills/` — the authoritative contract for agent behaviour in that mode |
-| **Run mode** | Default execution mode — agent navigates and executes, repo hierarchy is read-only |
-| **Build mode** | Activated by `[BUILD]` at prompt position 0 — agent scaffolds or edits the workspace hierarchy |
+| **CLAUDE.md** | Root-level agent entry point, router and mode detector only; carries no execution rules |
+| **Skill** | A mode-scoped instruction file in `skills/`, the authoritative contract for agent behaviour in that mode |
+| **Run mode** | Default execution mode, agent navigates and executes, repo hierarchy is read-only |
+| **Build mode** | Activated by `[BUILD]` at prompt position 0, agent scaffolds or edits the workspace hierarchy |
 | **context.md** | Scoped instruction file present at every level of the workspace hierarchy |
 | **Progressive disclosure** | The pattern of reading context top-down, each level narrowing the agent's scope |
-| **Projects tree** | Runtime output tree under `projects/` — `workspaces/` prefix replaced by `projects/{name}/`, never on main |
+| **Projects tree** | Runtime output tree under `projects/`, `workspaces/` prefix replaced by `projects/{name}/`, never on main |
 | **Artifact** | The `output.md` + `metadata.json` pair written at the task level |
 | **Output branch** | The `output/{date}-{slug}` branch holding a single run mode run's project data |
 | **Build branch** | The `build/{date}-{slug}` branch holding a single build mode run's scaffolding changes |

@@ -1,4 +1,4 @@
-# Stage 01 — Scan
+# Stage 01, Scan
 
 **One job**: Run all configured scanning agents against targets. Produce structured findings.
 
@@ -21,12 +21,12 @@
 Write to `01-scan/output/findings-[agent]-[run-id].md`:
 
 ```markdown
-# Findings: [agent-name] — [run-id]
+# Findings: [agent-name], [run-id]
 
 **Target**: [target-id]
 **Scan completed**: [timestamp]
 **Tool versions**: [tools used]
-**Coverage**: [what was and wasn't scanned — be honest about gaps]
+**Coverage**: [what was and wasn't scanned, be honest about gaps]
 
 ---
 
@@ -35,7 +35,7 @@ Write to `01-scan/output/findings-[agent]-[run-id].md`:
 **Type**: [scan type]
 **Severity**: critical / high / medium / low
 **Location**: [file:line / service / table / endpoint]
-**Evidence**: [specific data — log line, metric value, code snippet]
+**Evidence**: [specific data, log line, metric value, code snippet]
 **Description**: [plain language explanation]
 **Estimated fix effort**: low / medium / high
 
@@ -60,7 +60,7 @@ Write to `01-scan/output/findings-[agent]-[run-id].md`:
 Write `01-scan/output/scan-summary-[run-id].md`:
 
 ```markdown
-# Scan Summary — [run-id]
+# Scan Summary, [run-id]
 
 **Started**: [timestamp] | **Completed**: [timestamp]
 **Targets scanned**: [N] | **Agents run**: [N]
@@ -81,4 +81,4 @@ Write `01-scan/output/scan-summary-[run-id].md`:
 
 Update `_state.md`: Stage 01 → complete.
 Tell the human (or proceed autonomously to Stage 02 per workspace configuration):
-> "Scan complete — [N] findings across [N] agents. Proceeding to correlation."
+> "Scan complete, [N] findings across [N] agents. Proceeding to correlation."

@@ -1,4 +1,4 @@
-# Stage 01 — Onboard
+# Stage 01, Onboard
 
 **One job**: Learn the system deeply before taking any action.
 **Activate**: Once only, during the first 2 weeks of operation.
@@ -8,15 +8,15 @@
 
 ## What to do during onboarding
 
-**Week 1 — Read everything available**
+**Week 1, Read everything available**
 
 1. Read the charter fully (`_memory/constitutional/charter.md`)
 2. Read all system documentation provided in `01-onboard/input/`
 3. Read any existing process artifacts, runbooks, SOPs, architecture diagrams
 4. Ask the human about: known failure modes, past incidents, things that surprise operators
-5. Do not propose anything during Week 1 — only observe and ask
+5. Do not propose anything during Week 1, only observe and ask
 
-**Week 2 — Build the baseline**
+**Week 2, Build the baseline**
 
 1. If monitoring access is available: observe normal operation for 5–7 days
 2. Record what "normal" looks like for each monitored metric
@@ -41,17 +41,17 @@ Place in `01-onboard/input/`:
 
 | File | Contents |
 |------|----------|
-| `system-summary.md` | Your understanding of the system — confirm with human |
+| `system-summary.md` | Your understanding of the system, confirm with human |
 | `known-risks.md` | Risks and failure modes identified during onboarding |
 | `monitoring-setup.md` | Which signals to watch and how (for Stage 02) |
-| `onboarding-questions.md` | Anything still unclear — ask before proceeding |
+| `onboarding-questions.md` | Anything still unclear, ask before proceeding |
 
 ---
 
 ## Completion signal
 
 Tell the human:
-> "Onboarding complete. System summary is in `01-onboard/output/system-summary.md` —
+> "Onboarding complete. System summary is in `01-onboard/output/system-summary.md`, 
 > please review for accuracy. Once confirmed, I'll begin continuous monitoring in Stage 02.
 > Any corrections or additions before I proceed?"
 

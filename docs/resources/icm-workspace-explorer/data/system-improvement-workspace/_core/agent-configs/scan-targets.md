@@ -13,7 +13,7 @@ targets:
     name: [service or repo name]
     type: [code / infra / runtime / all]
     environment: [dev / staging / production]
-    credential_ref: [reference to credential store — never paste credentials here]
+    credential_ref: [reference to credential store, never paste credentials here]
     agents:
       - code-quality
       - security

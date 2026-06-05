@@ -1,4 +1,4 @@
-# Stage 04 — Human Review
+# Stage 04, Human Review
 
 **One job**: Present proposals clearly. Record every decision. Learn from rejections.
 
@@ -14,9 +14,9 @@ Provide a queue summary:
 ```
 Review queue: [N] items
 ─────────────────────────────────────
-[PROP-NNN] [title] — [severity] — [age in days]
-[PROP-NNN] [title] — [severity] — [age in days]
-[ESCALATION-slug] — [brief description]
+[PROP-NNN] [title], [severity], [age in days]
+[PROP-NNN] [title], [severity], [age in days]
+[ESCALATION-slug], [brief description]
 ─────────────────────────────────────
 Oldest item: [age]. Recommend starting with: [highest priority].
 ```
@@ -26,7 +26,7 @@ For each item, be ready to:
 2. Explain the proposed change in plain language
 3. State confidence, risk level, and expected impact
 4. Show the before/after diff if asked
-5. Answer questions — including "what happens if we don't fix this?"
+5. Answer questions, including "what happens if we don't fix this?"
 
 ---
 
@@ -48,7 +48,7 @@ For each item reviewed, write `04-review/decisions/DEC-[NNN]-[date].md` immediat
 - Any conditions: [e.g. "deploy at low-traffic time"]
 
 ## If REJECTED
-- Reason: [human's reason — record verbatim if possible]
+- Reason: [human's reason, record verbatim if possible]
 - Do not retry without new evidence
 
 Learning note (write to episodic memory):
@@ -58,7 +58,7 @@ Learning note (write to episodic memory):
 - What to do differently: [adjustment]
 
 ## If MODIFIED
-- Human's version: [exact modified fix — paste here]
+- Human's version: [exact modified fix, paste here]
 - Proceed to Stage 05 with the modified version
 - Note: human version supersedes original proposal
 
@@ -74,7 +74,7 @@ Learning note (write to episodic memory):
 
 For `ESCALATION-[slug].md` items:
 - Read the escalation context to the human
-- Do NOT propose a fix — wait for human guidance
+- Do NOT propose a fix, wait for human guidance
 - Record their guidance and any actions authorized
 - If they authorize new scope: that goes through charter amendment, not a proposal
 - Mark as resolved in the queue when handled
@@ -106,15 +106,15 @@ Rejection is valuable training data. After recording a rejection:
    ```
 
 2. These notes accumulate. Before generating future proposals in the same area,
-   search `_memory/episodic/` for rejection notes — they are better guides than
+   search `_memory/episodic/` for rejection notes; they are better guides than
    general heuristics.
 
 ---
 
 ## What the agent does NOT do at this stage
 
-- Does not apply changes — Stage 05 does that
+- Does not apply changes, Stage 05 does that
 - Does not modify proposals after rejection to "re-submit" immediately
-- Does not argue with rejections — record and learn
+- Does not argue with rejections, record and learn
 - Does not treat a deferred item as rejected (or vice versa)
-- Does not escalate an escalation — if guidance is unclear, ask directly
+- Does not escalate an escalation, if guidance is unclear, ask directly

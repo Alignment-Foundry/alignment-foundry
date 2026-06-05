@@ -8,7 +8,7 @@ Append after each run that produces confirmed outcomes.
 ## Format
 
 ```markdown
-## [date] — Run [run-id]
+## [date], Run [run-id]
 
 **Finding type**: [category]
 **Root cause pattern**: [description of the pattern detected]

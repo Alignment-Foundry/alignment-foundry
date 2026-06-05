@@ -15,11 +15,11 @@ The `output.json` file from `summarise/extract-metrics/`.
 
 `output.md`, one page (~400 words), with these sections:
 
-- Title — the company name.
-- `Snapshot` — revenue, growth, and a one-line descriptor.
-- `Recent moves` — the notable moves as a bulleted list.
-- `Read` — a short interpretation paragraph.
-- `Sources` — the cited URLs with access dates.
+- Title, the company name.
+- `Snapshot`, revenue, growth, and a one-line descriptor.
+- `Recent moves`, the notable moves as a bulleted list.
+- `Read`, a short interpretation paragraph.
+- `Sources`, the cited URLs with access dates.
 
 ## Error handling
 

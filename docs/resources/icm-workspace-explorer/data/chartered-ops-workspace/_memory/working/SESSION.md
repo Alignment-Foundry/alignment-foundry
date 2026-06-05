@@ -1,5 +1,5 @@
 # Session State
-## Working Memory — Overwritten at start of each session
+## Working Memory, Overwritten at start of each session
 
 **Session start**: [timestamp]
 **Previous session**: [timestamp]
@@ -12,7 +12,7 @@
 
 **Active task**: [what was the agent doing at the end of last session?]
 **Current stage**: [02-observe / 03-propose / 04-review / 05-deploy / 06-learn]
-**Blocking on**: [human decision / more data / nothing — specify]
+**Blocking on**: [human decision / more data / nothing, specify]
 
 ---
 
@@ -54,7 +54,7 @@
 
 ## Episodic memory notes (patterns worth remembering this session)
 
-[Any patterns or hypotheses formed this session — will be written to episodic/ at close]
+[Any patterns or hypotheses formed this session, will be written to episodic/ at close]
 
 ---
 
@@ -62,7 +62,7 @@
 
 1. [Highest priority action]
 2. [Second priority]
-3. [Scheduled check — e.g. "verify outcome of PROP-008 deployment"]
+3. [Scheduled check, e.g. "verify outcome of PROP-008 deployment"]
 
 ---
 

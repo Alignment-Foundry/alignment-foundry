@@ -5,7 +5,7 @@ into structured components and producing a complete set of process engineering a
 
 ## Quick start
 
-1. Fill in `01-intake/input/process-brief.md` (or leave blank — the agent will ask)
+1. Fill in `01-intake/input/process-brief.md` (or leave blank, the agent will ask)
 2. Open a conversation with Claude pointing to this workspace
 3. Say: **"Begin Stage 01"**
 4. The agent reads `CLAUDE.md` and `01-intake/STAGE.md` and starts
@@ -31,7 +31,7 @@ to do. Outputs go in `output/`. The human reviews and edits before the next stag
 
 ## Skill files
 
-`_core/skills/` contains four skill stubs. They are loaded on demand — one at a time,
+`_core/skills/` contains four skill stubs. They are loaded on demand, one at a time,
 only for the stage that needs them. This keeps the context window focused.
 
 The full skill content lives in the `.skill` bundle files produced by the design session.

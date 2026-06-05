@@ -30,7 +30,7 @@ Load only the phases named by the current STAGE.md. Do not work ahead.
 
 ---
 
-## Phase 0 — Classify the process
+## Phase 0, Classify the process
 
 Assign the process to one of 8 categories. Classification sets decomposition
 depth in Stage 02 and shapes how steps are scored in Stage 03.
@@ -52,10 +52,10 @@ decomposition and note the ambiguity. For a genuinely unclear type, load
 
 ---
 
-## Phase 1 — SIPOC & scope
+## Phase 1, SIPOC & scope
 
 SIPOC frames the process before it is decomposed. Build the five columns
-right to left — start from the Customer and what they need.
+right to left, start from the Customer and what they need.
 
 | Column | Question it answers |
 |--------|---------------------|
@@ -66,14 +66,14 @@ right to left — start from the Customer and what they need.
 | Customers | Who receives the output |
 
 Rules:
-- The Process column holds **5–7 steps** — no more. Each becomes a Stage 02 seed.
+- The Process column holds **5–7 steps**, no more. Each becomes a Stage 02 seed.
 - Define the **start event** (trigger) and **end event** (definition of done).
-- State what is **explicitly out of scope** — adjacent work this process does not own.
+- State what is **explicitly out of scope**, adjacent work this process does not own.
 - Recommend artifacts (A1–A10) against the human's goal; see `_core/patterns/artifact-menu.md`.
 
 ---
 
-## Phase 2 — Hierarchical decomposition (HTA)
+## Phase 2, Hierarchical decomposition (HTA)
 
 Break every SIPOC process step into a three-level tree:
 
@@ -81,21 +81,21 @@ Break every SIPOC process step into a three-level tree:
 PROCESS
 └── STAGE   Named phase with a clear entry and exit condition; has an owner
     └── STEP    Discrete activity with one identifiable actor, tool, and output
-        └── TASK    Atomic action — cannot split further without losing meaning
+        └── TASK    Atomic action, cannot split further without losing meaning
 ```
 
 Sizing guide:
-- **Stage** — 10–60 minutes of work, or a logical handoff point
-- **Step** — one activity, one clear deliverable
-- **Task** — one actor, one tool, one output
+- **Stage**, 10–60 minutes of work, or a logical handoff point
+- **Step**, one activity, one clear deliverable
+- **Task**, one actor, one tool, one output
 
 Decompose until every leaf is a Task. Go past three levels only when the
-process type (Phase 0) warrants it — e.g., decision trees for Knowledge
+process type (Phase 0) warrants it, e.g., decision trees for Knowledge
 processes, safety notes for Physical processes.
 
 Annotate every Stage and Step with: `actor`, `trigger`, `output`,
 `decision_point`, `data_in`, `data_out`, `tools`. Mark decision gateways (⊕),
-parallel tracks (‖), and loops (↺) explicitly — they drive the Stage 03
+parallel tracks (‖), and loops (↺) explicitly; they drive the Stage 03
 scorecard and the flow diagram.
 
 ---
@@ -103,9 +103,9 @@ scorecard and the flow diagram.
 ## Decomposition quality checks
 
 - Every leaf is a Task, not a vague Step
-- No Stage hides a handoff inside it — handoffs are explicit transitions
+- No Stage hides a handoff inside it, handoffs are explicit transitions
 - Decision points are marked wherever the path branches on a condition
-- Granularity is consistent — sibling units are roughly comparable in size
+- Granularity is consistent, sibling units are roughly comparable in size
 - An actor is named for every Stage and Step (never "someone")
 
 ---
