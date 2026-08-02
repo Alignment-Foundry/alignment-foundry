@@ -8,7 +8,7 @@ adding or editing site pages.
 The published Jekyll site for **The Alignment Foundry** (the workspace behind
 [alexsmoy.com](https://alexsmoy.com)). Source lives in `/docs` and is deployed
 by the default GitHub Pages pipeline from the `main` branch, `/docs` folder.
-Live at <https://alexsmoy.github.io/alignment-foundry/> (note the
+Live at <https://alignment-foundry.github.io/alignment-foundry/> (note the
 `/alignment-foundry` baseurl, every absolute in-site path includes it).
 
 ## Two kinds of pages

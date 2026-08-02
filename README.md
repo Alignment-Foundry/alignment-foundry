@@ -6,7 +6,7 @@ AI doesn't fail because of technology. It fails because leaders, teams, and stra
 
 **Alignment Foundry** is the workspace behind [alexsmoy.com](https://alexsmoy.com). It hosts the tools, ideas, and thinking I'm developing at the intersection of enterprise AI strategy, Centers of Excellence, and coalition-building.
 
-The published site lives at **[alexsmoy.github.io/alignment-foundry](https://alexsmoy.github.io/alignment-foundry)**.
+The published site lives at **[alignment-foundry.github.io/alignment-foundry](https://alignment-foundry.github.io/alignment-foundry)**.
 
 ---
 
