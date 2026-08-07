@@ -25,4 +25,41 @@
     io.observe(el);
   });
 }());
+
+// ── READING PROGRESS (theme enhancement 2026-08-06) ──
+(function () {
+  var pb = document.createElement('div'); pb.className = 'progress-bar';
+  document.body.appendChild(pb);
+  var ticking = false;
+  function upd() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    pb.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { requestAnimationFrame(upd); ticking = true; }
+  }, { passive: true });
+  upd();
+}());
+
+// ── TOC for long pages (theme enhancement 2026-08-06) ──
+(function () {
+  var main = document.querySelector('main');
+  if (!main) return;
+  var h2s = [].slice.call(document.querySelectorAll('main h2[id]'));
+  if (h2s.length < 3) return;
+  var toc = document.createElement('details'); toc.className = 'toc';
+  toc.innerHTML = '<summary>On this page</summary>';
+  var ol = document.createElement('ol');
+  h2s.forEach(function (h, i) {
+    var li = document.createElement('li');
+    var a = document.createElement('a'); a.href = '#' + h.id; a.textContent = h.textContent;
+    li.appendChild(a); ol.appendChild(li);
+  });
+  toc.appendChild(ol);
+  var pageHeader = main.querySelector('.page-header');
+  if (pageHeader) pageHeader.after(toc); else main.prepend(toc);
+}());
+
 </script>
