@@ -678,6 +678,77 @@ pre code { background: transparent; color: var(--text); padding: 0; }
 
 .footer-meta .footer-creed { color: var(--aquamarine); font-weight: 500; }
 
+/* Buttondown subscribe form ============================================= */
+
+.embeddable-buttondown-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  max-width: 320px;
+}
+
+.embeddable-buttondown-form label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.embeddable-buttondown-form input[type="email"] {
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--aq35);
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.embeddable-buttondown-form input[type="email"]:focus {
+  outline: none;
+  border-color: var(--aquamarine);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 3px var(--aq10);
+}
+
+.embeddable-buttondown-form input[type="submit"] {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--deep-blue);
+  background: var(--aquamarine);
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.4rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s var(--ease), box-shadow 0.2s ease;
+}
+
+.embeddable-buttondown-form input[type="submit"]:hover,
+.embeddable-buttondown-form input[type="submit"]:focus-visible {
+  background: var(--white);
+  transform: translateY(-1px);
+  box-shadow: var(--glow);
+}
+
+.embeddable-buttondown-form p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.embeddable-buttondown-form p a {
+  border-bottom: none;
+  color: var(--text-muted);
+}
+
+.embeddable-buttondown-form p a:hover {
+  color: var(--aquamarine);
+}
+
 
 /* ===== Theme enhancements 2026-08-06 ===== */
 /* Reading progress bar */
