@@ -24,3 +24,16 @@ Each report is a self-contained one-page interactive HTML briefing, built to be 
     <p>A field guide drawn from the 260 announcements at Google Cloud Next ’26: Identity, Memory, Permission, Security, and Oversight, the leadership decisions every enterprise must make before agents can deliver at scale.</p>
   </a>
 </div>
+
+## Subscribe
+
+Get the next briefing in your inbox, monthly.
+
+<form class="embeddable-buttondown-form" action="https://buttondown.com/api/emails/embed-subscribe/alignment-foundry" method="post">
+  <label for="bd-email-reports">Enter your email</label>
+  <input type="email" name="email" id="bd-email-reports" />
+  <input type="submit" value="Subscribe" />
+  <p>
+    <a href="https://buttondown.com/refer/alignment-foundry" target="_blank">Powered by Buttondown.</a>
+  </p>
+</form>
