@@ -42,3 +42,16 @@ Everything here is guided by one principle:
 > AI should be a tool, not a takeover.
 
 That means building systems with governance, grounding innovation in accountability, and always keeping people at the center of transformation.
+
+## Newsletter
+
+Executive briefings, monthly.
+
+<form class="embeddable-buttondown-form" action="https://buttondown.com/api/emails/embed-subscribe/alignment-foundry" method="post">
+  <label for="bd-email-home">Enter your email</label>
+  <input type="email" name="email" id="bd-email-home" />
+  <input type="submit" value="Subscribe" />
+  <p>
+    <a href="https://buttondown.com/refer/alignment-foundry" target="_blank">Powered by Buttondown.</a>
+  </p>
+</form>
