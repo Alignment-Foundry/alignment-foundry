@@ -26,3 +26,16 @@ When leaders are equipped and organizations are united, AI delivers more than gr
 
 - 🌐 [alexsmoy.com](https://alexsmoy.com)
 - 💼 [LinkedIn](https://linkedin.com/in/alexsmoy)
+
+## Subscribe
+
+Executive briefings and new frameworks, monthly, straight to your inbox.
+
+<form class="embeddable-buttondown-form" action="https://buttondown.com/api/emails/embed-subscribe/alignment-foundry" method="post">
+  <label for="bd-email-about">Enter your email</label>
+  <input type="email" name="email" id="bd-email-about" />
+  <input type="submit" value="Subscribe" />
+  <p>
+    <a href="https://buttondown.com/refer/alignment-foundry" target="_blank">Powered by Buttondown.</a>
+  </p>
+</form>
