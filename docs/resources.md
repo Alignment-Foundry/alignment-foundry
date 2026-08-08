@@ -39,3 +39,16 @@ The first wave of frameworks is being prepared for publication. Topics under dev
 - Change management playbooks for AI adoption
 
 Check back soon, or follow along on [LinkedIn](https://linkedin.com/in/alexsmoy) for updates.
+
+## Subscribe
+
+Get new frameworks and briefings in your inbox as they publish.
+
+<form class="embeddable-buttondown-form" action="https://buttondown.com/api/emails/embed-subscribe/alignment-foundry" method="post">
+  <label for="bd-email-resources">Enter your email</label>
+  <input type="email" name="email" id="bd-email-resources" />
+  <input type="submit" value="Subscribe" />
+  <p>
+    <a href="https://buttondown.com/refer/alignment-foundry" target="_blank">Powered by Buttondown.</a>
+  </p>
+</form>
